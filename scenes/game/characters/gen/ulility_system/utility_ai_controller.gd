@@ -4,8 +4,13 @@ class_name UtilityAIController extends Node
 ## Adds a boost to the current utility when updating scores to prevent switching too much
 @export var current_utility_score_boost := 0.1
 
+
 ## The current utility
 var current_utility : AIUtility
+
+
+func _ready() -> void:
+	update_utility_pritority()
 
 
 func _physics_process(delta: float) -> void:

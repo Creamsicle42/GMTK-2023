@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbllmaqmo65e8"]
+
+[ext_resource type="Texture2D" uid="uid://so2gh431ko8r" path="res://assets/textures/icon.svg" id="1_y2tko"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="2_lbtoy"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="3_yew2o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_laqg6"]
+radius = 19.105
+
+[sub_resource type="Curve" id="Curve_uouqf"]
+_data = [Vector2(0.247423, 0), 0.0, 0.13614, 0, 0, Vector2(0.989691, 1), 4.81354, 0.0, 0, 0]
+point_count = 2
+
+[node name="Skeleton" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_laqg6")
+
+[node name="DisplayPivot" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="DisplayPivot"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_y2tko")
+
+[node name="UtilityAIController" type="Node" parent="."]
+script = ExtResource("2_lbtoy")
+
+[node name="UtilityUpdateTimer" type="Timer" parent="UtilityAIController"]
+autostart = true
+
+[node name="WalkTowardsAttratorUtility" type="Node" parent="UtilityAIController"]
+script = ExtResource("3_yew2o")
+attractor_group = "player"
+distance_score_curve = SubResource("Curve_uouqf")
+
+[node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttratorUtility"]
+wait_time = 2.5
+autostart = true
+
+[connection signal="timeout" from="UtilityAIController/UtilityUpdateTimer" to="UtilityAIController" method="update_utility_pritority"]
+[connection signal="timeout" from="UtilityAIController/WalkTowardsAttratorUtility/TargetUpdateTimer" to="UtilityAIController/WalkTowardsAttratorUtility" method="update_closest_attractor"]
