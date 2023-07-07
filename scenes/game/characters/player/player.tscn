@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://4nsy5ttwkk8o"]
+[gd_scene load_steps=6 format=3 uid="uid://4nsy5ttwkk8o"]
 
 [ext_resource type="Texture2D" uid="uid://so2gh431ko8r" path="res://assets/textures/icon.svg" id="1_c7bw6"]
 [ext_resource type="Script" path="res://scenes/game/characters/player/player_main.gd" id="1_f466v"]
 [ext_resource type="PackedScene" uid="uid://cpxc3s6ygpiqw" path="res://scenes/game/ui/player_ui.tscn" id="3_y7nnu"]
+[ext_resource type="Script" path="res://scenes/game/characters/player/mana_tracker.gd" id="4_u5g17"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nr5qy"]
 radius = 32.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_f466v")
 
@@ -25,3 +27,6 @@ texture = ExtResource("1_c7bw6")
 [node name="SpellCooldownTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="ManaTracker" type="Node" parent="."]
+script = ExtResource("4_u5g17")

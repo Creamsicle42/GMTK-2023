@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_jdxc7")
 spell_name = "Summon Skeleton"
-spell_cost = 25.0
+spell_cost = 20.0
 world_instance = ExtResource("2_r7jfb")

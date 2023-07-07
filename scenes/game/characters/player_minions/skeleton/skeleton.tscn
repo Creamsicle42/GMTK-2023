@@ -34,6 +34,7 @@ autostart = true
 script = ExtResource("3_yew2o")
 attractor_group = "player"
 distance_score_curve = SubResource("Curve_uouqf")
+stop_distance = 100.0
 
 [node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttratorUtility"]
 wait_time = 2.5

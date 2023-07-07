@@ -22,6 +22,8 @@ var _selected_spell : SpellType
 # ONREADY VARIABLES
 @onready var player_ui: PlayerUI = $PlayerUI
 @onready var movement_acceleration :float = MOVE_SPEED / ACCELERATION_TIME
+@onready var mana_tracker: Node = $ManaTracker
+
 
 
 # BUILT IN METHODS
@@ -42,7 +44,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var button_event = (event as InputEventMouseButton)
 		if button_event.button_index == MOUSE_BUTTON_LEFT and button_event.pressed:
-			summon_selected_spell()
+			if _selected_spell == null: return
+			if _selected_spell.spell_cost < mana_tracker.current_mana:
+				summon_selected_spell()
 
 
 # PRIVATE METHODS
@@ -103,6 +107,10 @@ func _setup_debug() -> void:
 		"selected_spell",
 		"Selected Spell: "
 	)
+	DebugConsole.add_text_debug_element(
+		"mana",
+		"Mana: "
+	)
 
 
 func _update_debug() -> void:
@@ -113,4 +121,8 @@ func _update_debug() -> void:
 	DebugConsole.update_text_debug_element(
 		"selected_spell",
 		"Selected Spell: %s" % (_selected_spell.spell_name if _selected_spell != null else "None") 
+	)
+	DebugConsole.update_text_debug_element(
+		"mana",
+		"Mana: %s" % mana_tracker.current_mana
 	)
