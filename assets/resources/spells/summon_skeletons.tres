@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SpellType" load_steps=2 format=3 uid="uid://dovs56t8nh0eh"]
+
+[ext_resource type="Script" path="res://assets/resources/types/spell_type.gd" id="1_jdxc7"]
+
+[resource]
+script = ExtResource("1_jdxc7")
+spell_cost = 25.0
