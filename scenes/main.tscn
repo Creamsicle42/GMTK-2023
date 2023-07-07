@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce5l1ycij1dq5"]
+[gd_scene load_steps=4 format=3 uid="uid://ce5l1ycij1dq5"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ds50w"]
 [ext_resource type="PackedScene" uid="uid://4nsy5ttwkk8o" path="res://scenes/game/characters/player/player.tscn" id="2_3jy18"]
+[ext_resource type="Resource" uid="uid://dovs56t8nh0eh" path="res://assets/resources/spells/summon_skeletons.tres" id="3_lxnqk"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_ds50w")
 
 [node name="Player" parent="." instance=ExtResource("2_3jy18")]
 debug_mode = true
+spells = Array[Resource("res://assets/resources/types/spell_type.gd")]([ExtResource("3_lxnqk")])
