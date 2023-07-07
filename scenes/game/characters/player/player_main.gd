@@ -38,6 +38,13 @@ func _physics_process(delta: float) -> void:
 	_do_movement(delta)
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var button_event = (event as InputEventMouseButton)
+		if button_event.button_index == MOUSE_BUTTON_LEFT and button_event.pressed:
+			summon_selected_spell()
+
+
 # PRIVATE METHODS
 
 # Get the input movement axis
@@ -72,6 +79,18 @@ func _spell_button_pressed(button_index: int) -> void:
 
 func _cancel_spell_button_pressed() -> void:
 	set_selected_spell(null)
+
+
+func summon_selected_spell() -> void:
+	if _selected_spell == null: return
+	if not $SpellCooldownTimer.is_stopped(): return
+	var spell_instance: SpellWorldInstance = _selected_spell.world_instance.instantiate()
+	get_parent().add_child(spell_instance)
+	spell_instance.global_position = get_global_mouse_position()
+	spell_instance._caster = self
+	spell_instance.attempt_cast()
+	$SpellCooldownTimer.start()
+	
 
 
 # DEBUG METHODS

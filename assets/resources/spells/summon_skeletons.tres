@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="SpellType" load_steps=2 format=3 uid="uid://dovs56t8nh0eh"]
+[gd_resource type="Resource" script_class="SpellType" load_steps=3 format=3 uid="uid://dovs56t8nh0eh"]
 
 [ext_resource type="Script" path="res://assets/resources/types/spell_type.gd" id="1_jdxc7"]
+[ext_resource type="PackedScene" uid="uid://dq1pa3g571e74" path="res://scenes/game/spells/summon_skeletons/summon_skeletons_world_instance.tscn" id="2_r7jfb"]
 
 [resource]
 script = ExtResource("1_jdxc7")
 spell_name = "Summon Skeleton"
 spell_cost = 25.0
+world_instance = ExtResource("2_r7jfb")

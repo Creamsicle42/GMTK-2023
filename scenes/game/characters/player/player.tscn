@@ -21,3 +21,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_c7bw6")
 
 [node name="PlayerUI" parent="." instance=ExtResource("3_y7nnu")]
+
+[node name="SpellCooldownTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
