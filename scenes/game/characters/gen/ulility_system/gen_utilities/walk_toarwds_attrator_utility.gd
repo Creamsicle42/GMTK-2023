@@ -27,7 +27,7 @@ func utility_tick(_delta: float) -> void:
 	var owner_body = owner as CharacterBody2D
 	
 	if distance_to_closest_attractor() > stop_distance:
-		var move_vec := (owner_pos - targ_pos).normalized()
+		var move_vec := (targ_pos - owner_pos).normalized()
 		owner_body.velocity = move_vec * move_speed
 		owner_body.move_and_slide()
 
