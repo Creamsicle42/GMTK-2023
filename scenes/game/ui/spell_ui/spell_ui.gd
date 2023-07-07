@@ -13,6 +13,10 @@ var _cancel_button : Button
 @onready var spell_container: HBoxContainer = %SpellContainer
 
 
+# DEBUG
+#func _ready() -> void:
+#	render_spells([preload("res://assets/resources/spells/summon_skeletons.tres")])
+
 # PUBLIC METHODS
 
 # Renders the spell buttons
@@ -28,7 +32,6 @@ func render_spells(spell_array : Array[SpellType]) -> void:
 		)
 	
 	# Create cancel button
-	spell_container.add_spacer(false)
 	_cancel_button = _create_button(
 			{"text" : "Cancel Spell"},
 			_on_cancel_select_button_pressed
