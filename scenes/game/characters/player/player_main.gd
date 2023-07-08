@@ -23,6 +23,7 @@ var _selected_spell : SpellType
 @onready var player_ui: PlayerUI = $PlayerUI
 @onready var movement_acceleration :float = MOVE_SPEED / ACCELERATION_TIME
 @onready var mana_tracker: Node = $ManaTracker
+@onready var health_component: Node = $HealthComponent
 
 
 
@@ -94,7 +95,10 @@ func summon_selected_spell() -> void:
 	spell_instance._caster = self
 	spell_instance.attempt_cast()
 	$SpellCooldownTimer.start()
-	
+
+
+func get_enemies_in_range() -> Array[Node2D]:
+	return $EnemyDetector.get_overlapping_bodies()
 
 
 # DEBUG METHODS

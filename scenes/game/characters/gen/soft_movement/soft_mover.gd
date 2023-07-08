@@ -1,39 +1,68 @@
-class_name SoftMover extends Node
+class_name SoftMover extends Node2D
 
-@export var movement_speed := 150.0
+@export var debug : bool
+@export var movement_speed := 130.0
+@export var acceleration := 150.0
 @export var movement_threshold := 0.5
 
 var movement_controllers := {}
 
+var debug_vectors := {}
+
+var current_movement_direction := Vector2.ZERO
+
 # BUILT IN METHODS
 
 func _physics_process(delta: float) -> void:
-	var best_direction := Vector2.ZERO
-	var best_power := 0.0
-	for i in range(0, 2 * PI, deg_to_rad(45/2)):
-		var direction = Vector2.RIGHT.rotated(i)
-		var power = _get_power_for_direction(direction)
-		if power > best_power:
-			best_power = power
-			best_direction = direction
-	if best_power < movement_threshold: best_direction = Vector2.ZERO
-	(owner as CharacterBody2D).velocity = best_direction * movement_speed
+	
+	(owner as CharacterBody2D).velocity = (owner as CharacterBody2D).velocity.move_toward(
+		current_movement_direction * movement_speed,
+		acceleration * delta
+	)
 	(owner as CharacterBody2D).move_and_slide()
+	
+
+
+func _draw() -> void:
+	for i in debug_vectors.keys():
+		draw_line(Vector2.ZERO, i * 64 * abs(debug_vectors[i]), Color.GREEN if debug_vectors[i] > 0 else Color.RED)
 
 
 # PUBLIC METHODS
 
-func add_movement_controller(controller_id: String, controller: SoftMovementController):
+func add_movement_controller(controller_id: String, controller: SoftMovementController) -> void:
 	movement_controllers[controller_id] = controller
 
 
-func remove_movement_controller(controller_id: String):
+func remove_movement_controller(controller_id: String) -> void:
 	movement_controllers.erase(controller_id)
+
+
+func has_controller(controller_id: String) -> bool:
+	return movement_controllers.has(controller_id)
+
+
+func update_movement_direction() -> void:
+	var best_direction := Vector2.ZERO
+	var best_power := 0.0
+	
+	for i in range(0, 360, 22):
+		var direction = Vector2.RIGHT.rotated(deg_to_rad(i))
+		var power = _get_power_for_direction(direction)
+		if power > best_power:
+			best_power = power
+			best_direction = direction
+		if debug: debug_vectors[direction] = power
+		
+	if best_power < movement_threshold: best_direction = Vector2.ZERO
+	current_movement_direction = best_direction
+	queue_redraw()
+
 
 # PRIVATE METHODS
 
 func _get_power_for_direction(direction: Vector2) -> float:
 	var power := 0.0
 	for i in movement_controllers:
-		power += (i as SoftMovementController).get_power_for_direction(direction, owner)
+		power += (movement_controllers[i] as SoftMovementController).get_power_for_direction(direction, owner)
 	return power

@@ -6,7 +6,7 @@ signal mana_value_changed (new_value: float)
 
 const MAX_MANA = 100.0
 const MANA_REGEN_LIMIT := 50.0
-const MANA_REGEN_RATE := 1.0
+const MANA_REGEN_RATE := 50.0
 
 var current_mana := 0.0 :
 	set(new_value):

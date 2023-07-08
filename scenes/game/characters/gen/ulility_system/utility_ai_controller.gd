@@ -6,10 +6,16 @@ class_name UtilityAIController extends Node
 
 
 ## The current utility
-var current_utility : AIUtility
+var current_utility : AIUtility:
+	set(next_utility):
+		if not current_utility == next_utility:
+			if not current_utility == null: current_utility.exit_utility()
+			if not next_utility == null: next_utility.enter_utility()
+		current_utility = next_utility
 
 
 func _ready() -> void:
+	await get_tree().process_frame
 	update_utility_pritority()
 
 

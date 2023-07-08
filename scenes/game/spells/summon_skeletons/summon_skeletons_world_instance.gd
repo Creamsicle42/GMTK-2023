@@ -11,6 +11,7 @@ func attempt_cast() -> void:
 		get_parent().add_child(skeleton)
 		skeleton.global_position = global_position + get_unit_circle_point() * SPAWN_RANGE
 		_caster.mana_tracker.current_mana -= 5.0
+		await get_tree().process_frame
 	queue_free()
 
 

@@ -11,3 +11,11 @@ func get_utility_score() -> float:
 ## Preforms the update tick for the utility
 func utility_tick(_delta: float) -> void:
 	pass
+
+
+func enter_utility() -> void:
+	pass
+
+
+func exit_utility() -> void:
+	pass

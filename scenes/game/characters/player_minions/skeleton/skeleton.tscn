@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbllmaqmo65e8"]
+[gd_scene load_steps=13 format=3 uid="uid://dbllmaqmo65e8"]
 
+[ext_resource type="Script" path="res://scenes/game/characters/player_minions/skeleton/skeleton.gd" id="1_r5vkf"]
 [ext_resource type="Texture2D" uid="uid://so2gh431ko8r" path="res://assets/textures/icon.svg" id="1_y2tko"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="2_lbtoy"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="3_yew2o"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="4_8ykd7"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="5_7iycx"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="5_a0i2s"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="8_gj6t6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_laqg6"]
 radius = 19.105
@@ -11,16 +16,26 @@ radius = 19.105
 _data = [Vector2(0.247423, 0), 0.0, 0.13614, 0, 0, Vector2(0.989691, 1), 4.81354, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_yrwbd"]
+_data = [Vector2(0.154639, 0), 0.0, 0.0, 0, 0, Vector2(0.963917, 0.894737), 0.0, 0.0, 0, 0, Vector2(1, 0), -13.3871, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djckp"]
+radius = 32.0
+
 [node name="Skeleton" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
 motion_mode = 1
+script = ExtResource("1_r5vkf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
 shape = SubResource("CircleShape2D_laqg6")
 
 [node name="DisplayPivot" type="Node2D" parent="."]
 
 [node name="Icon" type="Sprite2D" parent="DisplayPivot"]
+position = Vector2(0, -20)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_y2tko")
 
@@ -30,15 +45,48 @@ script = ExtResource("2_lbtoy")
 [node name="UtilityUpdateTimer" type="Timer" parent="UtilityAIController"]
 autostart = true
 
-[node name="WalkTowardsAttratorUtility" type="Node" parent="UtilityAIController"]
+[node name="WalkTowardsAttratorUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
 script = ExtResource("3_yew2o")
 attractor_group = "player"
 distance_score_curve = SubResource("Curve_uouqf")
 stop_distance = 100.0
+mover = NodePath("../../SoftMover")
 
 [node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttratorUtility"]
 wait_time = 2.5
 autostart = true
 
+[node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
+script = ExtResource("5_a0i2s")
+distance_score_curve = SubResource("Curve_yrwbd")
+mover = NodePath("../../SoftMover")
+
+[node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/AttackEnemyInGroupUtility"]
+wait_time = 3.0
+autostart = true
+
+[node name="SoftMover" type="Node2D" parent="."]
+script = ExtResource("4_8ykd7")
+
+[node name="MovementDirectionUpdater" type="Timer" parent="SoftMover"]
+wait_time = 0.2
+autostart = true
+
+[node name="ObjectAvoider" type="Area2D" parent="." node_paths=PackedStringArray("mover")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("5_7iycx")
+mover = NodePath("../SoftMover")
+range = 32.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ObjectAvoider"]
+shape = SubResource("CircleShape2D_djckp")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("8_gj6t6")
+
 [connection signal="timeout" from="UtilityAIController/UtilityUpdateTimer" to="UtilityAIController" method="update_utility_pritority"]
 [connection signal="timeout" from="UtilityAIController/WalkTowardsAttratorUtility/TargetUpdateTimer" to="UtilityAIController/WalkTowardsAttratorUtility" method="update_closest_attractor"]
+[connection signal="timeout" from="UtilityAIController/AttackEnemyInGroupUtility/TargetUpdateTimer" to="UtilityAIController/AttackEnemyInGroupUtility" method="update_closest_attractor"]
+[connection signal="timeout" from="SoftMover/MovementDirectionUpdater" to="SoftMover" method="update_movement_direction"]
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]

@@ -1,7 +1,7 @@
-class_name WalkTowardsAttractorUtility extends AIUtility
+class_name AttackEnemyInGroupUtility extends AIUtility
 
 
-@export var attractor_group := ""
+@export var attack_closest := true
 @export var distance_score_curve : Curve
 @export var max_distance := 256.0
 @export var stop_distance := 64.0
@@ -30,6 +30,8 @@ func utility_tick(_delta: float) -> void:
 		if not mover.has_controller("move_toards_target"):
 			mover.add_movement_controller("move_toards_target", move_controller)
 	else:
+		if owner.has_method("do_attack"):
+			owner.do_attack((targ_pos - owner_pos).normalized())
 		if  mover.has_controller("move_toards_target"):
 			mover.remove_movement_controller("move_toards_target")
 
@@ -40,11 +42,11 @@ func update_closest_attractor() -> void:
 	
 
 func get_closest_attractor() -> Node2D:
-	var possible_attractors := get_tree().get_nodes_in_group(attractor_group)
+	var possible_attractors :Array[Node2D] = owner.get_enemy_group()
 	if possible_attractors.size() == 0: 
-		push_error("ERROR: No nodes in attractor group %s" % attractor_group)
 		return owner # Just to not crash
 	if possible_attractors.size() == 1: return possible_attractors[0] # Speeds up algorithim for player skeletons
+	if not attack_closest: return possible_attractors[0] # Speeds up enemy attacking
 	
 	var closest_attractor = null
 	var closest_dist := 100000000.0
