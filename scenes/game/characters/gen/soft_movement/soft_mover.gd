@@ -4,12 +4,15 @@ class_name SoftMover extends Node2D
 @export var movement_speed := 130.0
 @export var acceleration := 150.0
 @export var movement_threshold := 0.5
+@export var flip_pivot : FlipPivot
 
 var movement_controllers := {}
 
 var debug_vectors := {}
 
 var current_movement_direction := Vector2.ZERO
+
+var is_moving := false
 
 # BUILT IN METHODS
 
@@ -21,6 +24,8 @@ func _physics_process(delta: float) -> void:
 	)
 	(owner as CharacterBody2D).move_and_slide()
 	
+	if flip_pivot != null:
+		flip_pivot.update_direction((owner as CharacterBody2D).velocity)
 
 
 func _draw() -> void:
@@ -54,7 +59,11 @@ func update_movement_direction() -> void:
 			best_direction = direction
 		if debug: debug_vectors[direction] = power
 		
-	if best_power < movement_threshold: best_direction = Vector2.ZERO
+	if best_power < movement_threshold: 
+		is_moving = false
+		best_direction = Vector2.ZERO
+	else:
+		is_moving = true
 	current_movement_direction = best_direction
 	queue_redraw()
 

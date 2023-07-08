@@ -9,6 +9,7 @@ func _init(target: Node2D, distance: float) -> void:
 
 
 func get_power_for_direction(direction: Vector2, owner: CharacterBody2D):
+	if target_object == null: return 0.0
 	var direction_to_object = (target_object.global_position - owner.global_position).normalized()
 	var power = clamp(target_object.global_position.distance_to(owner.global_position) / target_dist, 0, 1)
 	return direction.dot(direction_to_object) * power

@@ -5,6 +5,7 @@ class_name AttackEnemyInGroupUtility extends AIUtility
 @export var distance_score_curve : Curve
 @export var max_distance := 256.0
 @export var stop_distance := 64.0
+@export var attack_range := 64.0
 @export var mover : SoftMover
 
 var current_attractor : Node2D
@@ -16,6 +17,7 @@ func _ready() -> void:
 
 ## Gets the score (priority) of the utility
 func get_utility_score() -> float:
+	if owner.get_enemy_group().size() == 0: return 0.0
 	var base_utility = clamp(distance_to_closest_attractor() / max_distance, 0.0, 1.0)
 	return distance_score_curve.sample(base_utility)
 
@@ -23,6 +25,9 @@ func get_utility_score() -> float:
 ## Preforms the update tick for the utility
 func utility_tick(_delta: float) -> void:
 	var owner_pos :Vector2= owner.global_position
+	if current_attractor == null:
+		update_closest_attractor()
+		return
 	var targ_pos :Vector2= current_attractor.global_position
 	var owner_body = owner as CharacterBody2D
 	
@@ -30,10 +35,12 @@ func utility_tick(_delta: float) -> void:
 		if not mover.has_controller("move_toards_target"):
 			mover.add_movement_controller("move_toards_target", move_controller)
 	else:
-		if owner.has_method("do_attack"):
-			owner.do_attack((targ_pos - owner_pos).normalized())
+		
 		if  mover.has_controller("move_toards_target"):
 			mover.remove_movement_controller("move_toards_target")
+	if distance_to_closest_attractor() < attack_range:
+		if owner.has_method("do_attack"):
+			owner.do_attack((targ_pos - owner_pos).normalized())
 
 
 func update_closest_attractor() -> void:
@@ -63,11 +70,16 @@ func get_closest_attractor() -> Node2D:
 
 func distance_to_closest_attractor() -> float:
 	var owner_pos :Vector2= owner.global_position
+	if current_attractor == null: 
+		update_closest_attractor()
+		return 100000.0
 	var targ_pos :Vector2= current_attractor.global_position
+	
 	return owner_pos.distance_to(targ_pos)
 
 
 func enter_utility():
+	update_closest_attractor()
 	mover.add_movement_controller("move_toards_target", move_controller)
 
 

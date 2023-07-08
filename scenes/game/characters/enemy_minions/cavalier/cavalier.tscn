@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gm37y6c5u0w7"]
+[gd_scene load_steps=15 format=3 uid="uid://gm37y6c5u0w7"]
 
 [ext_resource type="Texture2D" uid="uid://so2gh431ko8r" path="res://assets/textures/icon.svg" id="1_45r3x"]
 [ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_xbf5h"]
@@ -7,23 +7,27 @@
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="4_g4mx2"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="5_fghxp"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="6_ql5yo"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="8_84wlp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cwwwj"]
 radius = 31.0
 
-[sub_resource type="Curve" id="Curve_tac2k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.561856, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.442105), 2.82753, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_bdpj1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.742268, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.515789), 2.82753, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Curve" id="Curve_yrwbd"]
-_data = [Vector2(0.154639, 0), 0.0, 0.0, 0, 0, Vector2(0.963917, 0.894737), 0.0, 0.0, 0, 0, Vector2(1, 0), -13.3871, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_fq5i7"]
+_data = [Vector2(0, 0.905263), 0.0, 0.0, 0, 0, Vector2(0.335052, 0.915789), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.19459, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyxqo"]
-radius = 256.0
+radius = 518.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37sfr"]
-radius = 32.0
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oofcu"]
+radius = 16.0
 
 [node name="Cavalier" type="CharacterBody2D"]
 collision_layer = 4
@@ -46,7 +50,8 @@ max_health = 75.0
 
 [node name="SoftMover" type="Node2D" parent="."]
 script = ExtResource("3_hg88m")
-movement_speed = 80.0
+movement_speed = 64.0
+movement_threshold = 0.1
 
 [node name="MoveUpdateTimer" type="Timer" parent="SoftMover"]
 wait_time = 0.25
@@ -56,12 +61,13 @@ autostart = true
 script = ExtResource("4_g4mx2")
 
 [node name="UtilityUpdateTimer" type="Timer" parent="UtilityAIController"]
+wait_time = 0.5
 autostart = true
 
 [node name="WalkTowardsAttractorUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
 script = ExtResource("5_fghxp")
 attractor_group = "enemy_flag"
-distance_score_curve = SubResource("Curve_tac2k")
+distance_score_curve = SubResource("Curve_bdpj1")
 mover = NodePath("../../SoftMover")
 
 [node name="UpdateAttractorTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttractorUtility"]
@@ -70,8 +76,9 @@ autostart = true
 
 [node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
 script = ExtResource("6_ql5yo")
-attack_closest = false
-distance_score_curve = SubResource("Curve_yrwbd")
+distance_score_curve = SubResource("Curve_fq5i7")
+max_distance = 512.0
+stop_distance = 32.0
 mover = NodePath("../../SoftMover")
 
 [node name="UpdateTimer" type="Timer" parent="UtilityAIController/AttackEnemyInGroupUtility"]
@@ -88,13 +95,24 @@ shape = SubResource("CircleShape2D_dyxqo")
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(0, -21)
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(48, 0)
 shape = SubResource("CircleShape2D_37sfr")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
+
+[node name="ObjectAvoider" type="Area2D" parent="." node_paths=PackedStringArray("mover")]
+script = ExtResource("8_84wlp")
+mover = NodePath("../SoftMover")
+range = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectAvoider"]
+shape = SubResource("CircleShape2D_oofcu")
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
 [connection signal="timeout" from="SoftMover/MoveUpdateTimer" to="SoftMover" method="update_movement_direction"]

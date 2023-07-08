@@ -3,7 +3,7 @@ class_name PlayerMain extends CharacterBody2D
 # SIGNALS
 # ENUMS
 # CONSTANTS
-const MOVE_SPEED := 128.0
+const MOVE_SPEED := 96.0
 const ACCELERATION_TIME := 0.1
 
 
@@ -33,6 +33,9 @@ func _ready() -> void:
 		_setup_debug()
 	_setup_spells()
 
+func _process(_delta: float) -> void:
+	_update_animation()
+
 
 func _physics_process(delta: float) -> void:
 	if debug_mode:
@@ -41,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	_do_movement(delta)
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var button_event = (event as InputEventMouseButton)
 		if button_event.button_index == MOUSE_BUTTON_LEFT and button_event.pressed:
@@ -61,7 +64,9 @@ func _get_input_move_axis() -> Vector2:
 func _do_movement(delta: float) -> void:
 	var target_velocity :Vector2 = _get_input_move_axis() * MOVE_SPEED
 	velocity = velocity.move_toward(target_velocity, movement_acceleration * delta)
+	$DisplayPivot.update_direction(velocity)
 	move_and_slide()
+	
 
 
 func set_selected_spell(spell: SpellType) -> void:
@@ -71,6 +76,13 @@ func set_selected_spell(spell: SpellType) -> void:
 	else:
 		player_ui.spell_ui.set_cancel_button_enabled(true)
 
+
+func _update_animation() -> void:
+	if not $SpellCooldownTimer.is_stopped(): return
+	if _selected_spell == null:
+		$DisplayPivot/AnimationPlayer.set_animation("wave")
+	else:
+		$DisplayPivot/AnimationPlayer.set_animation("aim")
 
 func _setup_spells() -> void:
 	player_ui.spell_ui.render_spells(spells)
@@ -95,6 +107,7 @@ func summon_selected_spell() -> void:
 	spell_instance._caster = self
 	spell_instance.attempt_cast()
 	$SpellCooldownTimer.start()
+	$DisplayPivot/AnimationPlayer.set_animation("cast")
 
 
 func get_enemies_in_range() -> Array[Node2D]:
