@@ -32,6 +32,7 @@ func _ready() -> void:
 	if debug_mode:
 		_setup_debug()
 	_setup_spells()
+	player_ui.mana_bar.update_value(mana_tracker.current_mana / mana_tracker.MAX_MANA)
 
 func _process(_delta: float) -> void:
 	_update_animation()
@@ -148,3 +149,7 @@ func _update_debug() -> void:
 		"mana",
 		"Mana: %s" % mana_tracker.current_mana
 	)
+
+
+func _on_mana_tracker_mana_value_changed(new_value) -> void:
+	player_ui.mana_bar.update_value(new_value / mana_tracker.MAX_MANA)

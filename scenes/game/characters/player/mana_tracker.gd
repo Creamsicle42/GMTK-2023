@@ -8,7 +8,7 @@ const MAX_MANA = 100.0
 const MANA_REGEN_LIMIT := 20.0
 const MANA_REGEN_RATE := 1.0
 
-var current_mana := 0.0 :
+var current_mana := 25.0 :
 	set(new_value):
 		current_mana = clamp(new_value, 0, MAX_MANA)
 		mana_value_changed.emit(current_mana)

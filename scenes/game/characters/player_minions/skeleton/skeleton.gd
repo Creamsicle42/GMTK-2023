@@ -40,3 +40,9 @@ func do_attack(direction: Vector2) -> void:
 	$AttackArea.rotation = direction.angle()
 	for i in $AttackArea.get_overlapping_bodies():
 		i.health_component.change_health(-10)
+
+
+func reclaim() -> void:
+	var spark = SceneDict.MANA_SPARK.instantiate()
+	get_parent().add_child(spark)
+	spark.global_position = global_position

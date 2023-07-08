@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce5l1ycij1dq5"]
+[gd_scene load_steps=5 format=3 uid="uid://ce5l1ycij1dq5"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ds50w"]
 [ext_resource type="PackedScene" uid="uid://4nsy5ttwkk8o" path="res://scenes/game/characters/player/player.tscn" id="2_3jy18"]
 [ext_resource type="Resource" uid="uid://dovs56t8nh0eh" path="res://assets/resources/spells/summon_skeletons.tres" id="3_lxnqk"]
 [ext_resource type="PackedScene" uid="uid://gm37y6c5u0w7" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.tscn" id="4_kj0fn"]
-[ext_resource type="PackedScene" uid="uid://dk325ue1n2fsw" path="res://scenes/game/misc/mana_spark/mana_spark.tscn" id="5_6nxda"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_ds50w")
@@ -22,21 +21,3 @@ position = Vector2(1071, 536)
 
 [node name="Node2D" type="Node2D" parent="Node2D" groups=["enemy_flag"]]
 position = Vector2(1059, 150)
-
-[node name="ManaSpark" parent="Node2D" instance=ExtResource("5_6nxda")]
-position = Vector2(1124, 835)
-
-[node name="ManaSpark2" parent="Node2D" instance=ExtResource("5_6nxda")]
-position = Vector2(1194, 765)
-
-[node name="ManaSpark3" parent="Node2D" instance=ExtResource("5_6nxda")]
-position = Vector2(1238, 863)
-
-[node name="ManaSpark4" parent="Node2D" instance=ExtResource("5_6nxda")]
-position = Vector2(1124, 752)
-
-[node name="ManaSpark5" parent="Node2D" instance=ExtResource("5_6nxda")]
-position = Vector2(1054, 847)
-
-[node name="ManaSpark6" parent="Node2D" instance=ExtResource("5_6nxda")]
-position = Vector2(1184, 904)
