@@ -43,6 +43,8 @@ func do_attack(direction: Vector2) -> void:
 
 
 func reclaim() -> void:
-	var spark = SceneDict.MANA_SPARK.instantiate()
-	get_parent().add_child(spark)
-	spark.global_position = global_position
+	if(randf_range(0, 0.8) < health_component.get_percent_health()):
+		var spark = SceneDict.MANA_SPARK.instantiate()
+		get_parent().add_child(spark)
+		spark.global_position = global_position
+	queue_free()

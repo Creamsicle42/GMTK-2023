@@ -117,7 +117,7 @@ func get_enemies_in_range() -> Array[Node2D]:
 
 
 func collect_mana_spark() -> void:
-	mana_tracker.current_mana += 10
+	mana_tracker.current_mana += randi_range(3, 5)
 
 
 # DEBUG METHODS

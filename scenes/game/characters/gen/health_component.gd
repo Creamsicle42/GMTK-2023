@@ -14,3 +14,6 @@ signal health_depleted
 
 func change_health(change: float) -> void:
 	health += change
+
+func get_percent_health() -> float:
+	return health / max_health
