@@ -80,7 +80,7 @@ func set_selected_spell(spell: SpellType) -> void:
 func _update_animation() -> void:
 	if not $SpellCooldownTimer.is_stopped(): return
 	if _selected_spell == null:
-		$DisplayPivot/AnimationPlayer.set_animation("wave")
+		$DisplayPivot/AnimationPlayer.set_animation("idle")
 	else:
 		$DisplayPivot/AnimationPlayer.set_animation("aim")
 
@@ -108,6 +108,7 @@ func summon_selected_spell() -> void:
 	spell_instance.attempt_cast()
 	$SpellCooldownTimer.start()
 	$DisplayPivot/AnimationPlayer.set_animation("cast")
+	set_selected_spell(null)
 
 
 func get_enemies_in_range() -> Array[Node2D]:
