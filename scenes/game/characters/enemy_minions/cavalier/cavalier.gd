@@ -1,5 +1,6 @@
 class_name Cavalier extends CharacterBody2D
 
+
 @onready var health_component: Node = $HealthComponent
 @onready var misc_anim_controller: AnimationPlayer = $FlipPivot/MiscAnimController
 @onready var soft_mover: Node2D = $SoftMover
@@ -33,6 +34,15 @@ func do_attack(direction: Vector2) -> void:
 
 
 func _on_health_component_health_depleted() -> void:
+	
+	die()
+
+
+func die() -> void:
+	for i in 6:
+		var spark = SceneDict.MANA_SPARK.instantiate()
+		get_parent().add_child(spark)
+		spark.global_position = global_position
 	translate(Vector2(-10000, -10000))
 	await get_tree().process_frame
 	queue_free()

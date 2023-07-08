@@ -18,6 +18,7 @@ config/icon="res://assets/textures/icon.svg"
 [autoload]
 
 DebugConsole="*res://src/_debug/debug_console.tscn"
+SceneDict="*res://src/scene_dict.gd"
 
 [input]
 

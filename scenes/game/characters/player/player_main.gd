@@ -115,6 +115,10 @@ func get_enemies_in_range() -> Array[Node2D]:
 	return $EnemyDetector.get_overlapping_bodies()
 
 
+func collect_mana_spark() -> void:
+	mana_tracker.current_mana += 10
+
+
 # DEBUG METHODS
 func _setup_debug() -> void:
 	DebugConsole.add_text_debug_element(
