@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ButtonTextureSet" load_steps=6 format=3 uid="uid://da2qjon5wieor"]
+
+[ext_resource type="Texture2D" uid="uid://bknbo4e1wicer" path="res://assets/textures/ui/spell_bar/cancel/cancel_button_base.png" id="1_6o4c8"]
+[ext_resource type="Script" path="res://assets/resources/types/button_texture_set.gd" id="1_kfoqe"]
+[ext_resource type="Texture2D" uid="uid://d0fhy0rt4aa7" path="res://assets/textures/ui/spell_bar/cancel/cancel_button_disabled.png" id="2_i15m5"]
+[ext_resource type="Texture2D" uid="uid://cp2j30f1tet2b" path="res://assets/textures/ui/spell_bar/cancel/cancel_button_pressed.png" id="3_os8ci"]
+[ext_resource type="Texture2D" uid="uid://mofnka6x3rfl" path="res://assets/textures/ui/spell_bar/cancel/cancel_button_selected.png" id="5_2ivg0"]
+
+[resource]
+script = ExtResource("1_kfoqe")
+base = ExtResource("1_6o4c8")
+pressed = ExtResource("3_os8ci")
+selected = ExtResource("5_2ivg0")
+disabled = ExtResource("2_i15m5")

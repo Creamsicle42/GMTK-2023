@@ -8,3 +8,5 @@ class_name SpellType extends Resource
 @export var spell_cost := 25.0
 # The world instance of the spell
 @export var world_instance : PackedScene
+# The textures of the spell button
+@export var button_set : ButtonTextureSet

@@ -300,7 +300,8 @@ autostart = true
 [node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
 script = ExtResource("5_a0i2s")
 distance_score_curve = SubResource("Curve_yrwbd")
-stop_distance = 32.0
+stop_distance = 48.0
+attack_range = 96.0
 mover = NodePath("../../SoftMover")
 
 [node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/AttackEnemyInGroupUtility"]

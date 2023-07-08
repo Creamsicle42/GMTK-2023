@@ -53,5 +53,25 @@ move_left={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+grass_noise={
+"type": "sampler2D",
+"value": "res://assets/textures/effect/generated/grass_noise.tres"
+}
+grass_noise_scroll={
+"type": "vec2",
+"value": Vector2(0.01, 0.02)
+}
+grass_wave_power={
+"type": "float",
+"value": 8.0
+}
+grass_world_scale={
+"type": "float",
+"value": 0.1
+}
