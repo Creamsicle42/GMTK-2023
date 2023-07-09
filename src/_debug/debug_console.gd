@@ -10,12 +10,12 @@ var debug_elements : Dictionary = {
 }
 
 # Toggles visibility of debug console
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_page_down"):
-		if visible:
-			visible = false
-		else:
-			visible = true
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("ui_page_down"):
+#		if visible:
+#			visible = false
+#		else:
+#			visible = true
 
 
 # Creates a debug element with the given text
