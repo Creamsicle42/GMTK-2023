@@ -3,7 +3,7 @@ class_name PlayerMain extends CharacterBody2D
 # SIGNALS
 # ENUMS
 # CONSTANTS
-const MOVE_SPEED := 96.0
+const MOVE_SPEED := 192.0
 const ACCELERATION_TIME := 0.1
 
 

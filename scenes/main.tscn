@@ -1,49 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://ce5l1ycij1dq5"]
+[gd_scene load_steps=2 format=3 uid="uid://ce5l1ycij1dq5"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ds50w"]
-[ext_resource type="PackedScene" uid="uid://4nsy5ttwkk8o" path="res://scenes/game/characters/player/player.tscn" id="2_3jy18"]
-[ext_resource type="Resource" uid="uid://dovs56t8nh0eh" path="res://assets/resources/spells/summon_skeletons.tres" id="3_lxnqk"]
-[ext_resource type="PackedScene" uid="uid://gm37y6c5u0w7" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.tscn" id="4_kj0fn"]
-[ext_resource type="Resource" uid="uid://cl00i5pr4hwiy" path="res://assets/resources/spells/reclaim.tres" id="4_we35y"]
-[ext_resource type="TileSet" uid="uid://defs1a6w50rio" path="res://assets/resources/tilesets/terain_tileset.tres" id="6_b8to0"]
-
-[sub_resource type="Gradient" id="Gradient_8a4vu"]
-colors = PackedColorArray(0.621094, 0.621094, 0.621094, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_fkviw"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x0jvt"]
-seamless = true
-color_ramp = SubResource("Gradient_8a4vu")
-noise = SubResource("FastNoiseLite_fkviw")
 
 [node name="main" type="Node"]
 script = ExtResource("1_ds50w")
-
-[node name="Node2D" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Player" parent="Node2D" instance=ExtResource("2_3jy18")]
-position = Vector2(215, 325)
-debug_mode = true
-spells = Array[Resource("res://assets/resources/types/spell_type.gd")]([ExtResource("3_lxnqk"), ExtResource("4_we35y")])
-
-[node name="Cavalier" parent="Node2D" instance=ExtResource("4_kj0fn")]
-position = Vector2(1071, 536)
-
-[node name="Node2D" type="Node2D" parent="Node2D" groups=["enemy_flag"]]
-position = Vector2(1059, 150)
-
-[node name="TileMap" type="TileMap" parent="Node2D"]
-y_sort_enabled = true
-tile_set = ExtResource("6_b8to0")
-format = 2
-layer_0/name = "Brick"
-layer_0/tile_data = PackedInt32Array(327685, 65537, 1, 327686, 65537, 1, 393222, 65537, 1, 393221, 65537, 1, 393223, 65537, 1, 327687, 196609, 1, 458759, 65537, 2, 458758, 196609, 0, 458757, 3, 65536, 524294, 131073, 2, 458756, 3, 65536, 524293, 3, 65536, 393220, 3, 65536, 327684, 65537, 1, 262148, 65537, 0, 524292, 3, 65536, 589828, 3, 65536, 327683, 3, 65536, 393219, 3, 65536, 262147, 1, 0, 262149, 65537, 0, 262150, 65537, 0, 262151, 131073, 0, 393224, 65537, 1, 393225, 65537, 1, 458761, 65537, 2, 458760, 65537, 2, 327688, 65537, 0, 327689, 262145, 1, 262153, 1, 0, 393226, 196609, 0, 458762, 131073, 2, 327690, 196609, 1, 393227, 131073, 2, 327691, 131073, 0, 262154, 131073, 0, 589836, 3, 65536, 655371, 1, 2, 655372, 262145, 0, 720908, 1, 2, 720909, 3, 65536, 655373, 3, 65536, 655374, 3, 65536, 589837, 3, 65536, 589835, 1, 0, 720910, 3, 65536, 589838, 3, 65536, 655375, 3, 65536, 589839, 3, 65536, 524302, 3, 65536, 524303, 3, 65536, 458765, 3, 65536, 524301, 3, 65536, 458766, 3, 65536, 458767, 3, 65536, 655376, 3, 65536, 655377, 3, 65536, 655378, 3, 65536, 589842, 3, 65536, 589841, 3, 65536, 589840, 3, 65536, 720912, 3, 65536, 720911, 3, 65536, 786448, 3, 65536, 786445, 3, 65536, 786446, 3, 65536, 786447, 3, 65536, 786449, 3, 65536, 720913, 3, 65536, 458755, 3, 65536, 458754, 3, 65536, 458753, 3, 65536, 524289, 3, 65536, 524290, 3, 65536, 524291, 3, 65536, 393218, 3, 65536, 327682, 3, 65536, 589827, 3, 65536, 589826, 3, 65536, 655363, 3, 65536, 655364, 3, 65536, 655365, 3, 65536, 655368, 3, 65536, 655367, 3, 65536, 720903, 3, 65536, 720904, 3, 65536, 720905, 3, 65536, 655369, 3, 262144, 786440, 3, 65536, 786441, 3, 65536, 589834, 3, 65536, 589833, 3, 65536, 589832, 3, 65536, 327703, 3, 131072, 262165, 3, 131072, 262166, 3, 131072, 131095, 3, 131072, 262168, 3, 131072, 131091, 3, 131072, 196627, 3, 131072, 196626, 3, 131072, 262162, 3, 131072, 15, 3, 131072, 131090, 3, 131072, 131093, 3, 131072, 131088, 3, 131072, 131089, 3, 131072, 65554, 3, 131072, 65550, 3, 131072, 131081, 3, 196608, 196620, 3, 196608, 720918, 3, 262144, 786432, 3, 327680, 786435, 3, 327680)
-
-[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
-z_index = -2
-texture_repeat = 2
-color = Color(0.541176, 0.478431, 0.356863, 1)
-texture = SubResource("NoiseTexture2D_x0jvt")
-polygon = PackedVector2Array(-173, -133, 1715, -128, 1767, 1154, 1008, 1190, -346, 1077, -332, 575)

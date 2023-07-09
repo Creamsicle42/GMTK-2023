@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://defs1a6w50rio"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://defs1a6w50rio"]
 
 [ext_resource type="Texture2D" uid="uid://cvhg3qwnwgmyo" path="res://assets/textures/terain/bricks.png" id="1_crnit"]
 [ext_resource type="Texture2D" uid="uid://5eiqtu1ni100" path="res://assets/textures/terain/grass.png" id="2_k3ac0"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bwumhgh1l0l2k" path="res://scenes/game/props/crate.tscn" id="5_0i6pb"]
 [ext_resource type="PackedScene" uid="uid://dnmsk6rqj4417" path="res://scenes/game/props/stone.tscn" id="6_l0gd0"]
 [ext_resource type="PackedScene" uid="uid://x8wmronrpl6j" path="res://scenes/game/props/wall.tscn" id="7_t04tc"]
+[ext_resource type="PackedScene" uid="uid://gm37y6c5u0w7" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.tscn" id="8_533ew"]
+[ext_resource type="PackedScene" uid="uid://caex1sj073oua" path="res://scenes/game/characters/capture_point/capture_point.tscn" id="9_bqwwk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltoqq"]
 texture = ExtResource("1_crnit")
@@ -90,6 +92,8 @@ scenes/2/scene = ExtResource("4_cw36o")
 scenes/3/scene = ExtResource("5_0i6pb")
 scenes/4/scene = ExtResource("6_l0gd0")
 scenes/5/scene = ExtResource("7_t04tc")
+scenes/6/scene = ExtResource("8_533ew")
+scenes/7/scene = ExtResource("9_bqwwk")
 
 [resource]
 tile_size = Vector2i(64, 64)

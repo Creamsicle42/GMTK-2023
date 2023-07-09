@@ -310,7 +310,8 @@ autostart = true
 
 [node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
 script = ExtResource("4_8ykd7")
-movement_speed = 100.0
+movement_speed = 200.0
+acceleration = 250.0
 movement_threshold = 0.1
 flip_pivot = NodePath("../DisplayPivot")
 

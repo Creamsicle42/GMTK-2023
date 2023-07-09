@@ -19,6 +19,7 @@ config/icon="res://assets/textures/icon.svg"
 
 DebugConsole="*res://src/_debug/debug_console.tscn"
 SceneDict="*res://src/scene_dict.gd"
+LoadingScreen="*res://src/loading_screen/loading_screen.tscn"
 
 [input]
 

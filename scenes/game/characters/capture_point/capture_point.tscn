@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://caex1sj073oua"]
+
+[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="1_3cw76"]
+[ext_resource type="Script" path="res://scenes/game/characters/capture_point/capture_point.gd" id="1_oupdd"]
+[ext_resource type="Texture2D" uid="uid://d16boj8qeydbc" path="res://assets/textures/characters/capture_point/capture_point_main.png" id="3_gfojd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eetmv"]
+radius = 77.4145
+
+[node name="CapturePoint" type="StaticBody2D" groups=["capture_point"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_oupdd")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_3cw76")
+max_health = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("CircleShape2D_eetmv")
+
+[node name="CapturePointSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_gfojd")
+offset = Vector2(0, -96)
+
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
