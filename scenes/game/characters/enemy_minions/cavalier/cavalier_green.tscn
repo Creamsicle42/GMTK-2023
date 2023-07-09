@@ -326,6 +326,7 @@ radius = 16.0
 collision_layer = 4
 script = ExtResource("1_v8ex0")
 damage = 8
+xp = 2
 
 [node name="FlipPivot" type="Node2D" parent="."]
 script = ExtResource("2_nwd5n")

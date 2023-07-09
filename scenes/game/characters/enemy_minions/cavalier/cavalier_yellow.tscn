@@ -326,7 +326,6 @@ radius = 16.0
 [node name="CavalierYellow" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_lj5pb")
-xp = 6
 
 [node name="FlipPivot" type="Node2D" parent="."]
 script = ExtResource("2_sk8s0")
@@ -369,7 +368,7 @@ shape = SubResource("CircleShape2D_cwwwj")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("9_ssc6f")
-max_health = 40.0
+max_health = 35.0
 
 [node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
 script = ExtResource("10_s16at")

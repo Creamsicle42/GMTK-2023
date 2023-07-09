@@ -52,7 +52,7 @@ func do_attack(direction: Vector2) -> void:
 	attack_cooldown.start()
 	$AttackArea.rotation = direction.angle()
 	for i in $AttackArea.get_overlapping_bodies():
-		i.health_component.change_health(-10)
+		i.health_component.change_health(-15)
 
 
 func reclaim() -> void:

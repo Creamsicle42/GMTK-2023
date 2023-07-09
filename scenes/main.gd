@@ -3,7 +3,11 @@ class_name Main extends Node
 const MAIN_MENU_SCENE = preload("res://scenes/menu/main_menu/main_menu.tscn")
 const GAME_LEVELS_PATHS = [
 	"res://scenes/game/levels/cutscenes/opening_cutscene.tscn",
+	"res://scenes/game/levels/level_1.tscn",
 	"res://scenes/game/levels/test_level.tscn",
+	"res://scenes/game/levels/level_3.tscn",
+	"res://scenes/game/levels/level_4.tscn",
+	"res://scenes/game/levels/level_5.tscn",
 	"res://scenes/game/levels/cutscenes/closing_cutscene.tscn"
 ]
 
@@ -65,6 +69,7 @@ func load_level(level_index: int) -> void:
 	
 	# Place level
 	current_scene.queue_free()
+	await get_tree().process_frame
 	current_scene = (ResourceLoader.load_threaded_get(scene_path) as PackedScene).instantiate()
 	if current_scene.has_signal("level_complete"): current_scene.level_complete.connect(load_level.bind(level_index + 1))
 	if current_scene.has_signal("player_killed"): current_scene.player_killed.connect(reload_current_level)

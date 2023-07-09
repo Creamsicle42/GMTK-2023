@@ -327,7 +327,7 @@ radius = 16.0
 collision_layer = 4
 script = ExtResource("1_0cyfi")
 damage = 20
-xp = 8
+xp = 6
 
 [node name="FlipPivot" type="Node2D" parent="."]
 script = ExtResource("2_rf5ca")
@@ -370,7 +370,6 @@ shape = SubResource("CircleShape2D_cwwwj")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("9_h3rj2")
-max_health = 80.0
 
 [node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
 script = ExtResource("10_82y7h")
