@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bawmiwxeowx1x"]
+[gd_scene load_steps=28 format=3 uid="uid://bawmiwxeowx1x"]
 
 [ext_resource type="Script" path="res://scenes/game/characters/player_minions/large_skeleton/large_skeleton.gd" id="1_ljxso"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="2_l2njy"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="10_g728v"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="11_kvcx6"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="12_aq6vn"]
+[ext_resource type="AudioStream" uid="uid://ct7ahyalk5gpg" path="res://assets/audio/sfx/skeleton/skeleton_raise.ogg" id="13_urywu"]
+[ext_resource type="AudioStream" uid="uid://dopwlf8pblejy" path="res://assets/audio/sfx/skeleton/skeleton_hit.ogg" id="14_jdprx"]
+[ext_resource type="AudioStream" uid="uid://0cqxt2kn5fvb" path="res://assets/audio/sfx/skeleton/skeleton_die.ogg" id="15_sl71m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_laqg6"]
 radius = 32.0
@@ -77,6 +80,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DisplayPivot/Legs:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_xnosf"]
@@ -224,11 +239,57 @@ tracks/3/keys = {
 "values": [0.0, -0.300762]
 }
 
+[sub_resource type="Animation" id="Animation_80tke"]
+resource_name = "summon"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisplayPivot/Legs:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.392292, 1),
+"update": 0,
+"values": [Vector2(0.8, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c1cea"]
+resource_name = "die"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DisplayPivot/Legs:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7),
+"transitions": PackedFloat32Array(0.34151, 2.54912, 1),
+"update": 0,
+"values": [0.0, 0.174533, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DisplayPivot/Legs:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_of5t1"]
 _data = {
 "RESET": SubResource("Animation_v34ed"),
 "attack": SubResource("Animation_xnosf"),
+"die": SubResource("Animation_c1cea"),
 "idle": SubResource("Animation_ene4v"),
+"summon": SubResource("Animation_80tke"),
 "walk": SubResource("Animation_ivup5")
 }
 
@@ -329,4 +390,17 @@ shape = SubResource("CircleShape2D_xyrmx")
 [node name="AttackCooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="RaiseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_urywu")
+pitch_scale = 0.5
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_jdprx")
+pitch_scale = 0.8
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_sl71m")
+pitch_scale = 0.5
+
+[connection signal="damage_taken" from="HealthComponent" to="." method="_on_health_component_damage_taken"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
