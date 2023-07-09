@@ -1,4 +1,4 @@
-class_name MainMenu extends Control
+class_name MainMenu extends CanvasLayer
 
 signal start_game
 
