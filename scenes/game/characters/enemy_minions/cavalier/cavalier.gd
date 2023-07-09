@@ -1,5 +1,7 @@
 class_name Cavalier extends CharacterBody2D
 
+@export var damage : int = 10
+@export var xp : int = 4
 
 @onready var health_component: Node = $HealthComponent
 @onready var misc_anim_controller: AnimationPlayer = $FlipPivot/MiscAnimController
@@ -43,7 +45,7 @@ func do_attack(direction: Vector2) -> void:
 	$AttackCooldown.start()
 	$AttackArea.rotation = direction.angle()
 	for i in $AttackArea.get_overlapping_bodies():
-		i.health_component.change_health(-15)
+		i.health_component.change_health(-damage)
 
 
 func _on_health_component_health_depleted() -> void:
@@ -52,7 +54,7 @@ func _on_health_component_health_depleted() -> void:
 
 
 func die() -> void:
-	for i in 6:
+	for i in xp:
 		var spark = SceneDict.MANA_SPARK.instantiate()
 		get_parent().add_child(spark)
 		spark.global_position = global_position

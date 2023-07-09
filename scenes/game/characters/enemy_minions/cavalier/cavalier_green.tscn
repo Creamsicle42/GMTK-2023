@@ -1,19 +1,19 @@
 [gd_scene load_steps=26 format=3 uid="uid://gm37y6c5u0w7"]
 
-[ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_xbf5h"]
-[ext_resource type="Texture2D" uid="uid://dbc4awurlle5d" path="res://assets/textures/characters/cavalier/legs.png" id="2_1xmtb"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_p0738"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="2_x17pd"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="3_hg88m"]
-[ext_resource type="Texture2D" uid="uid://btmo4blqpes18" path="res://assets/textures/characters/cavalier/torso.png" id="3_o4vg6"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="4_g4mx2"]
-[ext_resource type="Texture2D" uid="uid://cmxcvpnfs3nkc" path="res://assets/textures/characters/cavalier/head.png" id="4_wsv5m"]
-[ext_resource type="Texture2D" uid="uid://bcf7hwd4yumuj" path="res://assets/textures/characters/cavalier/back_arm.png" id="5_5hyre"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="5_fghxp"]
-[ext_resource type="Texture2D" uid="uid://b4cipgohasp53" path="res://assets/textures/characters/cavalier/front_arm.png" id="6_e11e2"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="6_ql5yo"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="8_6nsrb"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="8_84wlp"]
+[ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_v8ex0"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_nwd5n"]
+[ext_resource type="Texture2D" uid="uid://dbc4awurlle5d" path="res://assets/textures/characters/cavalier/legs.png" id="3_8bssi"]
+[ext_resource type="Texture2D" uid="uid://btmo4blqpes18" path="res://assets/textures/characters/cavalier/torso.png" id="4_xnyir"]
+[ext_resource type="Texture2D" uid="uid://cmxcvpnfs3nkc" path="res://assets/textures/characters/cavalier/head.png" id="5_6km42"]
+[ext_resource type="Texture2D" uid="uid://bcf7hwd4yumuj" path="res://assets/textures/characters/cavalier/back_arm.png" id="6_4a1cs"]
+[ext_resource type="Texture2D" uid="uid://b4cipgohasp53" path="res://assets/textures/characters/cavalier/front_arm.png" id="7_r7aqn"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="8_gq6og"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="9_vkfo0"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="10_kkkl7"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="11_5j1kk"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="12_4e4nq"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="13_60xt7"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="14_bll3y"]
 
 [sub_resource type="Animation" id="Animation_5cylm"]
 resource_name = "idle"
@@ -322,90 +322,75 @@ radius = 48.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oofcu"]
 radius = 16.0
 
-[node name="Cavalier" type="CharacterBody2D"]
+[node name="CavalierGreen" type="CharacterBody2D"]
 collision_layer = 4
-script = ExtResource("1_xbf5h")
+script = ExtResource("1_v8ex0")
+damage = 8
 
 [node name="FlipPivot" type="Node2D" parent="."]
-script = ExtResource("2_p0738")
+script = ExtResource("2_nwd5n")
 
 [node name="Legs" type="Sprite2D" parent="FlipPivot"]
 position = Vector2(0, -32)
-texture = ExtResource("2_1xmtb")
+texture = ExtResource("3_8bssi")
 hframes = 2
 
 [node name="Torso" type="Sprite2D" parent="FlipPivot/Legs"]
 position = Vector2(4, -40)
-texture = ExtResource("3_o4vg6")
+texture = ExtResource("4_xnyir")
 offset = Vector2(0, -32)
 
 [node name="Head" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
 position = Vector2(10, -74)
-texture = ExtResource("4_wsv5m")
+texture = ExtResource("5_6km42")
 offset = Vector2(3, -12)
 
 [node name="BackArm" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
 show_behind_parent = true
 position = Vector2(19, -43)
-texture = ExtResource("5_5hyre")
+texture = ExtResource("6_4a1cs")
 offset = Vector2(14, 24)
 
 [node name="FrontArm" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
 position = Vector2(-18, -55)
-texture = ExtResource("6_e11e2")
+texture = ExtResource("7_r7aqn")
 offset = Vector2(21.545, 24.075)
 
 [node name="MiscAnimController" type="AnimationPlayer" parent="FlipPivot"]
 libraries = {
 "": SubResource("AnimationLibrary_7h8ep")
 }
-script = ExtResource("8_6nsrb")
+script = ExtResource("8_gq6og")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_cwwwj")
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_x17pd")
-max_health = 75.0
+script = ExtResource("9_vkfo0")
+max_health = 30.0
 
 [node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
-script = ExtResource("3_hg88m")
+script = ExtResource("10_kkkl7")
 movement_speed = 64.0
 movement_threshold = 0.1
 flip_pivot = NodePath("../FlipPivot")
 
-[node name="MoveUpdateTimer" type="Timer" parent="SoftMover"]
-wait_time = 0.25
-autostart = true
-
 [node name="UtilityAIController" type="Node" parent="."]
-script = ExtResource("4_g4mx2")
-
-[node name="UtilityUpdateTimer" type="Timer" parent="UtilityAIController"]
-wait_time = 0.5
-autostart = true
+script = ExtResource("11_5j1kk")
 
 [node name="WalkTowardsAttractorUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
-script = ExtResource("5_fghxp")
+script = ExtResource("12_4e4nq")
 attractor_group = "enemy_flag"
 distance_score_curve = SubResource("Curve_bdpj1")
 mover = NodePath("../../SoftMover")
 
-[node name="UpdateAttractorTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttractorUtility"]
-wait_time = 5.0
-autostart = true
-
 [node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
-script = ExtResource("6_ql5yo")
+script = ExtResource("13_60xt7")
 distance_score_curve = SubResource("Curve_fq5i7")
 max_distance = 512.0
 stop_distance = 32.0
 mover = NodePath("../../SoftMover")
-
-[node name="UpdateTimer" type="Timer" parent="UtilityAIController/AttackEnemyInGroupUtility"]
-wait_time = 1.25
-autostart = true
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -428,7 +413,7 @@ shape = SubResource("CircleShape2D_37sfr")
 one_shot = true
 
 [node name="ObjectAvoider" type="Area2D" parent="." node_paths=PackedStringArray("mover")]
-script = ExtResource("8_84wlp")
+script = ExtResource("14_bll3y")
 mover = NodePath("../SoftMover")
 range = 16.0
 
@@ -436,7 +421,3 @@ range = 16.0
 shape = SubResource("CircleShape2D_oofcu")
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
-[connection signal="timeout" from="SoftMover/MoveUpdateTimer" to="SoftMover" method="update_movement_direction"]
-[connection signal="timeout" from="UtilityAIController/UtilityUpdateTimer" to="UtilityAIController" method="update_utility_pritority"]
-[connection signal="timeout" from="UtilityAIController/WalkTowardsAttractorUtility/UpdateAttractorTimer" to="UtilityAIController/WalkTowardsAttractorUtility" method="update_closest_attractor"]
-[connection signal="timeout" from="UtilityAIController/AttackEnemyInGroupUtility/UpdateTimer" to="UtilityAIController/AttackEnemyInGroupUtility" method="update_closest_attractor"]
