@@ -7,6 +7,18 @@ class_name Skeleton extends CharacterBody2D
 @onready var soft_mover: Node2D = $SoftMover
 @onready var attack_cooldown: Timer = $AttackCooldown
 
+var ai_update_id : int
+var movement_update_id : int
+
+func _ready() -> void:
+	ai_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, $UtilityAIController.update_utility_pritority)
+	movement_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_MOVEMENT, soft_mover.update_movement_direction)
+
+
+func _exit_tree() -> void:
+	UpdateQueueSystem.remove_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, ai_update_id)
+	UpdateQueueSystem.remove_queued_update(UpdateQueueSystem.PLAYER_MINION_MOVEMENT, movement_update_id)
+
 
 func _process(delta: float) -> void:
 	update_animations()

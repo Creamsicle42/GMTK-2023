@@ -16,6 +16,7 @@ func _ready() -> void:
 
 ## Gets the score (priority) of the utility
 func get_utility_score() -> float:
+	update_closest_attractor()
 	var base_utility = clamp(distance_to_closest_attractor() / max_distance, 0.0, 1.0)
 	return distance_score_curve.sample(base_utility)
 
@@ -60,6 +61,7 @@ func get_closest_attractor() -> Node2D:
 
 
 func distance_to_closest_attractor() -> float:
+	if current_attractor == null: return 0.0
 	var owner_pos :Vector2= owner.global_position
 	var targ_pos :Vector2= current_attractor.global_position
 	return owner_pos.distance_to(targ_pos)

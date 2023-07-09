@@ -282,9 +282,6 @@ offset = Vector2(-22, 34)
 [node name="UtilityAIController" type="Node" parent="."]
 script = ExtResource("2_lbtoy")
 
-[node name="UtilityUpdateTimer" type="Timer" parent="UtilityAIController"]
-autostart = true
-
 [node name="WalkTowardsAttratorUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
 script = ExtResource("3_yew2o")
 attractor_group = "player"
@@ -293,10 +290,6 @@ max_distance = 448.0
 stop_distance = 128.0
 mover = NodePath("../../SoftMover")
 
-[node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttratorUtility"]
-wait_time = 2.5
-autostart = true
-
 [node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
 script = ExtResource("5_a0i2s")
 distance_score_curve = SubResource("Curve_yrwbd")
@@ -304,20 +297,12 @@ stop_distance = 48.0
 attack_range = 96.0
 mover = NodePath("../../SoftMover")
 
-[node name="TargetUpdateTimer" type="Timer" parent="UtilityAIController/AttackEnemyInGroupUtility"]
-wait_time = 3.0
-autostart = true
-
 [node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
 script = ExtResource("4_8ykd7")
 movement_speed = 200.0
 acceleration = 250.0
 movement_threshold = 0.1
 flip_pivot = NodePath("../DisplayPivot")
-
-[node name="MovementDirectionUpdater" type="Timer" parent="SoftMover"]
-wait_time = 0.1
-autostart = true
 
 [node name="ObjectAvoider" type="Area2D" parent="." node_paths=PackedStringArray("mover")]
 collision_layer = 2
@@ -344,8 +329,4 @@ shape = SubResource("CircleShape2D_xyrmx")
 [node name="AttackCooldown" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="UtilityAIController/UtilityUpdateTimer" to="UtilityAIController" method="update_utility_pritority"]
-[connection signal="timeout" from="UtilityAIController/WalkTowardsAttratorUtility/TargetUpdateTimer" to="UtilityAIController/WalkTowardsAttratorUtility" method="update_closest_attractor"]
-[connection signal="timeout" from="UtilityAIController/AttackEnemyInGroupUtility/TargetUpdateTimer" to="UtilityAIController/AttackEnemyInGroupUtility" method="update_closest_attractor"]
-[connection signal="timeout" from="SoftMover/MovementDirectionUpdater" to="SoftMover" method="update_movement_direction"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
