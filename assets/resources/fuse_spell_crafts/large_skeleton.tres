@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FuseSpellCraft" load_steps=3 format=3 uid="uid://3vdbg4y0igsy"]
+
+[ext_resource type="PackedScene" uid="uid://bawmiwxeowx1x" path="res://scenes/game/characters/player_minions/large_skeleton/large_skeleton.tscn" id="1_gupth"]
+[ext_resource type="Script" path="res://assets/resources/types/fuse_spell_craft.gd" id="1_w4mle"]
+
+[resource]
+script = ExtResource("1_w4mle")
+output = ExtResource("1_gupth")
+inputs = Array[String](["skeleton", "skeleton", "skeleton", "skeleton", "skeleton"])

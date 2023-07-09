@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://bawmiwxeowx1x"]
 
-[ext_resource type="Script" path="res://scenes/game/characters/player_minions/skeleton/skeleton.gd" id="1_am73k"]
+[ext_resource type="Script" path="res://scenes/game/characters/player_minions/large_skeleton/large_skeleton.gd" id="1_ljxso"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="2_l2njy"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="3_gfcm1"]
 [ext_resource type="Texture2D" uid="uid://rhlyi5aciicx" path="res://assets/textures/characters/skeleton/legs.png" id="4_ybg2m"]
@@ -247,9 +247,9 @@ radius = 40.0
 radius = 64.0
 
 [node name="LargeSkeleton" type="CharacterBody2D"]
-collision_layer = 8
+collision_layer = 24
 motion_mode = 1
-script = ExtResource("1_am73k")
+script = ExtResource("1_ljxso")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_laqg6")

@@ -24,6 +24,9 @@ func _process(delta: float) -> void:
 	update_animations()
 
 
+func get_craft_type() -> String: return "skeleton"
+
+
 func get_enemy_group() -> Array[Node2D]:
 	if player == null: return []
 	return player.get_enemies_in_range()

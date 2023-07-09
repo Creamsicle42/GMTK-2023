@@ -23,6 +23,7 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	update_animations()
 
+func get_craft_type() -> String: return "large_skeleton"
 
 func get_enemy_group() -> Array[Node2D]:
 	if player == null: return []

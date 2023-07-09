@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://qpgupvb1uhp4"]
+[gd_scene load_steps=11 format=3 uid="uid://qpgupvb1uhp4"]
 
 [ext_resource type="Script" path="res://scenes/game/levels/level_controller.gd" id="1_anrf7"]
 [ext_resource type="PackedScene" uid="uid://4nsy5ttwkk8o" path="res://scenes/game/characters/player/player.tscn" id="2_nqjsi"]
 [ext_resource type="Resource" uid="uid://dovs56t8nh0eh" path="res://assets/resources/spells/summon_skeletons.tres" id="3_osk45"]
 [ext_resource type="Resource" uid="uid://cl00i5pr4hwiy" path="res://assets/resources/spells/reclaim.tres" id="4_58uut"]
+[ext_resource type="Resource" uid="uid://is0b6s0b1gen" path="res://assets/resources/spells/fuse.tres" id="5_o6t7i"]
 [ext_resource type="PackedScene" uid="uid://bawmiwxeowx1x" path="res://scenes/game/characters/player_minions/large_skeleton/large_skeleton.tscn" id="6_iw0w4"]
 [ext_resource type="TileSet" uid="uid://defs1a6w50rio" path="res://assets/resources/tilesets/terain_tileset.tres" id="6_yvxri"]
 
@@ -24,7 +25,7 @@ script = ExtResource("1_anrf7")
 [node name="Player" parent="." instance=ExtResource("2_nqjsi")]
 position = Vector2(215, 325)
 debug_mode = true
-spells = Array[Resource("res://assets/resources/types/spell_type.gd")]([ExtResource("3_osk45"), ExtResource("4_58uut")])
+spells = Array[Resource("res://assets/resources/types/spell_type.gd")]([ExtResource("3_osk45"), ExtResource("4_58uut"), ExtResource("5_o6t7i")])
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 z_index = -10
