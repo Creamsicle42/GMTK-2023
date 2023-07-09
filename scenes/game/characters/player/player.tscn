@@ -625,7 +625,7 @@ radius = 37.4833
 radius = 512.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 8
+collision_layer = 40
 motion_mode = 1
 script = ExtResource("1_f466v")
 

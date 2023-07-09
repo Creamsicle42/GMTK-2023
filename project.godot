@@ -22,6 +22,11 @@ SceneDict="*res://src/scene_dict.gd"
 LoadingScreen="*res://src/loading_screen/loading_screen.tscn"
 UpdateQueueSystem="*res://src/update_queue_system.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [input]
 
 move_up={
@@ -52,6 +57,7 @@ move_left={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="player_minions"
 2d_physics/layer_5="world_craftable"
+2d_physics/layer_6="player"
 
 [rendering]
 

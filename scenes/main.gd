@@ -2,8 +2,9 @@ class_name Main extends Node
 
 const MAIN_MENU_SCENE = preload("res://scenes/menu/main_menu/main_menu.tscn")
 const GAME_LEVELS_PATHS = [
+	"res://scenes/game/levels/cutscenes/opening_cutscene.tscn",
 	"res://scenes/game/levels/test_level.tscn",
-	"res://scenes/menu/game_end_screen/game_end_screen.tscn"
+	"res://scenes/game/levels/cutscenes/closing_cutscene.tscn"
 ]
 
 var current_scene: Node
@@ -11,6 +12,16 @@ var last_loaded_level := 0
 var is_changing_level := false
 
 func _ready() -> void:
+	set_main_menu()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_page_up"):
+		load_level(last_loaded_level + 1)
+
+
+func set_main_menu() -> void:
+	if current_scene != null: current_scene.queue_free()
 	current_scene = MAIN_MENU_SCENE.instantiate()
 	add_child(current_scene)
 	(current_scene as MainMenu).start_game.connect(
@@ -24,7 +35,9 @@ func reload_current_level() -> void:
 
 func load_level(level_index: int) -> void:
 	if is_changing_level: return
-	if level_index >= GAME_LEVELS_PATHS.size() or level_index < 0: return
+	if level_index >= GAME_LEVELS_PATHS.size() or level_index < 0:
+		set_main_menu()
+		return
 	last_loaded_level = level_index
 	is_changing_level = true
 	var scene_path = GAME_LEVELS_PATHS[level_index]
