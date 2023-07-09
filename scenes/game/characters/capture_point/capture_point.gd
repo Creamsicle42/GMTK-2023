@@ -16,3 +16,8 @@ func _on_health_component_health_depleted() -> void:
 	point_captured.emit()
 	capture_point_sprite.texture = CAPTURED_TETURE
 	collision_shape.set_deferred("disabled", true)
+
+
+func _on_health_component_damage_taken(damage) -> void:
+	$AudioStreamPlayer.pitch_scale = randf_range(0.9, 1.6)
+	$AudioStreamPlayer.play()

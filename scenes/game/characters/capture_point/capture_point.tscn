@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://caex1sj073oua"]
+[gd_scene load_steps=6 format=3 uid="uid://caex1sj073oua"]
 
 [ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="1_3cw76"]
 [ext_resource type="Script" path="res://scenes/game/characters/capture_point/capture_point.gd" id="1_oupdd"]
 [ext_resource type="Texture2D" uid="uid://d16boj8qeydbc" path="res://assets/textures/characters/capture_point/capture_point_main.png" id="3_gfojd"]
+[ext_resource type="AudioStream" uid="uid://brxhb7xpq06ri" path="res://assets/audio/sfx/cavalier/knight_hit.ogg" id="4_nmtne"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eetmv"]
 radius = 77.4145
@@ -24,4 +25,9 @@ shape = SubResource("CircleShape2D_eetmv")
 texture = ExtResource("3_gfojd")
 offset = Vector2(0, -96)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nmtne")
+pitch_scale = 2.0
+
+[connection signal="damage_taken" from="HealthComponent" to="." method="_on_health_component_damage_taken"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
