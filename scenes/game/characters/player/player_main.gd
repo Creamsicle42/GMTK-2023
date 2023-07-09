@@ -75,8 +75,12 @@ func _do_movement(delta: float) -> void:
 func set_selected_spell(spell: SpellType) -> void:
 	_selected_spell = spell
 	if spell == null:
+		var audio_tween = create_tween()
+		audio_tween.tween_property($Magic, "volume_db", -80, 0.5)
 		player_ui.spell_ui.set_cancel_button_enabled(false)
 	else:
+		var audio_tween = create_tween()
+		audio_tween.tween_property($Magic, "volume_db", -10, 0.5)
 		player_ui.spell_ui.set_cancel_button_enabled(true)
 
 
@@ -111,6 +115,8 @@ func summon_selected_spell() -> void:
 	spell_instance.attempt_cast()
 	$SpellCooldownTimer.start()
 	$DisplayPivot/AnimationPlayer.set_animation("cast")
+	$Cast.pitch_scale = randf_range(0.9, 1.1)
+	$Cast.play()
 	set_selected_spell(null)
 
 
@@ -158,4 +164,11 @@ func _on_mana_tracker_mana_value_changed(new_value) -> void:
 
 
 func _on_mana_tracker_mana_depleted() -> void:
+	$Die.pitch_scale = randf_range(0.9, 1.1)
+	$Die.play()
 	player_killed.emit()
+
+
+func _on_health_component_damage_taken(damage) -> void:
+	$Hit.pitch_scale = randf_range(0.9, 1.1)
+	$Hit.play()
