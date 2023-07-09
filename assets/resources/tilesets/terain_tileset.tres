@@ -1,0 +1,105 @@
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://defs1a6w50rio"]
+
+[ext_resource type="Texture2D" uid="uid://cvhg3qwnwgmyo" path="res://assets/textures/terain/bricks.png" id="1_crnit"]
+[ext_resource type="Texture2D" uid="uid://5eiqtu1ni100" path="res://assets/textures/terain/grass.png" id="2_k3ac0"]
+[ext_resource type="PackedScene" uid="uid://blmjo3nwh3dpk" path="res://scenes/game/props/grass_tuft.tscn" id="3_mxhdn"]
+[ext_resource type="PackedScene" uid="uid://cmf6widkn3m5q" path="res://scenes/game/props/tree.tscn" id="4_cw36o"]
+[ext_resource type="PackedScene" uid="uid://bwumhgh1l0l2k" path="res://scenes/game/props/crate.tscn" id="5_0i6pb"]
+[ext_resource type="PackedScene" uid="uid://dnmsk6rqj4417" path="res://scenes/game/props/stone.tscn" id="6_l0gd0"]
+[ext_resource type="PackedScene" uid="uid://x8wmronrpl6j" path="res://scenes/game/props/wall.tscn" id="7_t04tc"]
+[ext_resource type="PackedScene" uid="uid://gm37y6c5u0w7" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.tscn" id="8_533ew"]
+[ext_resource type="PackedScene" uid="uid://caex1sj073oua" path="res://scenes/game/characters/capture_point/capture_point.tscn" id="9_bqwwk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltoqq"]
+texture = ExtResource("1_crnit")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_right_corner = 0
+3:1/0/terrains_peering_bit/bottom_left_corner = 0
+3:1/0/terrains_peering_bit/top_left_corner = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/terrains_peering_bit/bottom_right_corner = 0
+4:1/0/terrains_peering_bit/bottom_left_corner = 0
+4:1/0/terrains_peering_bit/top_right_corner = 0
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/terrains_peering_bit/bottom_right_corner = 0
+4:0/0/terrains_peering_bit/top_left_corner = 0
+4:0/0/terrains_peering_bit/top_right_corner = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/bottom_left_corner = 0
+3:0/0/terrains_peering_bit/top_left_corner = 0
+3:0/0/terrains_peering_bit/top_right_corner = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/bottom_right_corner = 0
+0:1/0/terrains_peering_bit/top_right_corner = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nbfho"]
+texture = ExtResource("2_k3ac0")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_uwnbm"]
+scenes/1/scene = ExtResource("3_mxhdn")
+scenes/2/scene = ExtResource("4_cw36o")
+scenes/3/scene = ExtResource("5_0i6pb")
+scenes/4/scene = ExtResource("6_l0gd0")
+scenes/5/scene = ExtResource("7_t04tc")
+scenes/6/scene = ExtResource("8_533ew")
+scenes/7/scene = ExtResource("9_bqwwk")
+
+[resource]
+tile_size = Vector2i(64, 64)
+terrain_set_0/mode = 1
+terrain_set_0/terrain_0/name = "Brick"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/1 = SubResource("TileSetAtlasSource_ltoqq")
+sources/2 = SubResource("TileSetAtlasSource_nbfho")
+sources/3 = SubResource("TileSetScenesCollectionSource_uwnbm")

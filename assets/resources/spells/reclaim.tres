@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellType" load_steps=4 format=3 uid="uid://cl00i5pr4hwiy"]
+
+[ext_resource type="Script" path="res://assets/resources/types/spell_type.gd" id="1_r2gqf"]
+[ext_resource type="Resource" uid="uid://vga64kg1wk2q" path="res://assets/resources/button_texture_sets/reclaim_button.tres" id="1_tl8ky"]
+[ext_resource type="PackedScene" uid="uid://cv6ytti5rfduc" path="res://scenes/game/spells/reclaim/reclaim_world_instance.tscn" id="2_ef7t7"]
+
+[resource]
+script = ExtResource("1_r2gqf")
+spell_name = "Reclaim"
+spell_cost = 1.0
+world_instance = ExtResource("2_ef7t7")
+button_set = ExtResource("1_tl8ky")

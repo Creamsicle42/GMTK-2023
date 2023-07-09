@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpellType" load_steps=4 format=3 uid="uid://dovs56t8nh0eh"]
+
+[ext_resource type="Resource" uid="uid://biciewnsfkayd" path="res://assets/resources/button_texture_sets/summon_skeleton_button.tres" id="1_egbao"]
+[ext_resource type="Script" path="res://assets/resources/types/spell_type.gd" id="1_jdxc7"]
+[ext_resource type="PackedScene" uid="uid://dq1pa3g571e74" path="res://scenes/game/spells/summon_skeletons/summon_skeletons_world_instance.tscn" id="2_r7jfb"]
+
+[resource]
+script = ExtResource("1_jdxc7")
+spell_name = "Summon Skeleton"
+spell_cost = 20.0
+world_instance = ExtResource("2_r7jfb")
+button_set = ExtResource("1_egbao")

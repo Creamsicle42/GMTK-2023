@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq1pa3g571e74"]
+
+[ext_resource type="Script" path="res://scenes/game/spells/summon_skeletons/summon_skeletons_world_instance.gd" id="1_0byle"]
+
+[node name="SummonSkeletonsWorldInstance" type="Node2D"]
+script = ExtResource("1_0byle")

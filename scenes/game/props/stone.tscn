@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnmsk6rqj4417"]
+
+[ext_resource type="Texture2D" uid="uid://cpjy1d61607dl" path="res://assets/textures/props/stone.png" id="1_b5div"]
+
+[node name="Stone" type="Sprite2D"]
+texture = ExtResource("1_b5div")
+offset = Vector2(0, -64)

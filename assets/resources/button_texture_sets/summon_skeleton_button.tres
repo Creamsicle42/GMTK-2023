@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ButtonTextureSet" load_steps=6 format=3 uid="uid://biciewnsfkayd"]
+
+[ext_resource type="Texture2D" uid="uid://bnjmovhtdoeo" path="res://assets/textures/ui/spell_bar/summon_skeletons/summon_skeletons_button_base.png" id="1_23nfr"]
+[ext_resource type="Script" path="res://assets/resources/types/button_texture_set.gd" id="1_btx48"]
+[ext_resource type="Texture2D" uid="uid://cotvhp5bgahya" path="res://assets/textures/ui/spell_bar/summon_skeletons/summon_skeletons_button_disabled.png" id="2_cvhmp"]
+[ext_resource type="Texture2D" uid="uid://cc6e5svsm3anl" path="res://assets/textures/ui/spell_bar/summon_skeletons/summon_skeletons_button_held.png" id="3_y2iky"]
+[ext_resource type="Texture2D" uid="uid://4l8x0e03midi" path="res://assets/textures/ui/spell_bar/summon_skeletons/summon_skeletons_button_selected.png" id="5_vqqa4"]
+
+[resource]
+script = ExtResource("1_btx48")
+base = ExtResource("1_23nfr")
+pressed = ExtResource("3_y2iky")
+selected = ExtResource("5_vqqa4")
+disabled = ExtResource("2_cvhmp")

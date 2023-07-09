@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://blmjo3nwh3dpk"]
+
+[ext_resource type="Texture2D" uid="uid://brppcu0is5qo0" path="res://assets/textures/props/grass_tuft.png" id="1_jqudb"]
+[ext_resource type="Script" path="res://scenes/game/random_offset.gd" id="2_4csx0"]
+
+[node name="grass_tuft" type="Sprite2D"]
+texture = ExtResource("1_jqudb")
+offset = Vector2(0, -60)
+script = ExtResource("2_4csx0")
