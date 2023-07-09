@@ -1,0 +1,424 @@
+[gd_scene load_steps=26 format=3 uid="uid://c5cjryujhkxsb"]
+
+[ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_lj5pb"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_sk8s0"]
+[ext_resource type="Texture2D" uid="uid://dbc4awurlle5d" path="res://assets/textures/characters/cavalier/legs.png" id="3_60sim"]
+[ext_resource type="Texture2D" uid="uid://dsjv13xre3qdk" path="res://assets/textures/characters/cavalier/torso_yellow.png" id="4_3721s"]
+[ext_resource type="Texture2D" uid="uid://cmxcvpnfs3nkc" path="res://assets/textures/characters/cavalier/head.png" id="5_3pujf"]
+[ext_resource type="Texture2D" uid="uid://bcf7hwd4yumuj" path="res://assets/textures/characters/cavalier/back_arm.png" id="6_owq0r"]
+[ext_resource type="Texture2D" uid="uid://b4cipgohasp53" path="res://assets/textures/characters/cavalier/front_arm.png" id="7_rl4k4"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="8_iv6wj"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="9_ssc6f"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="10_s16at"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="11_c7pl0"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="12_3xyjk"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="13_qiwiq"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="14_ildk8"]
+
+[sub_resource type="Animation" id="Animation_djy78"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs/Torso/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs/Torso/FrontArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs/Torso/BackArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Legs:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Legs/Torso:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ld7sy"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs/Torso:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.261799, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs/Torso/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs/Torso/FrontArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -2.26893, 0.558505, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Legs/Torso/BackArm:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.470979, 1.68099, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Legs:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5cylm"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.99), Vector2(1, 1), Vector2(1, 1.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs/Torso/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs/Torso/FrontArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0349066, 0.0, -0.0349066]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs/Torso/BackArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, 0.0, 0.0349066]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Legs:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yhi00"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.94), Vector2(1, 0.9), Vector2(1, 0.96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs/Torso/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.174533]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs/Torso/BackArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.261799]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Legs/Torso/FrontArm:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t76dk"]
+_data = {
+"RESET": SubResource("Animation_djy78"),
+"attack": SubResource("Animation_ld7sy"),
+"idle": SubResource("Animation_5cylm"),
+"walk": SubResource("Animation_yhi00")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwwwj"]
+radius = 31.0
+
+[sub_resource type="Curve" id="Curve_bdpj1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.742268, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.515789), 2.82753, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_fq5i7"]
+_data = [Vector2(0, 0.905263), 0.0, 0.0, 0, 0, Vector2(0.335052, 0.915789), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.19459, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dyxqo"]
+radius = 518.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37sfr"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oofcu"]
+radius = 16.0
+
+[node name="CavalierYellow" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_lj5pb")
+
+[node name="FlipPivot" type="Node2D" parent="."]
+script = ExtResource("2_sk8s0")
+
+[node name="Legs" type="Sprite2D" parent="FlipPivot"]
+position = Vector2(0, -32)
+texture = ExtResource("3_60sim")
+hframes = 2
+
+[node name="Torso" type="Sprite2D" parent="FlipPivot/Legs"]
+position = Vector2(4, -40)
+texture = ExtResource("4_3721s")
+offset = Vector2(0, -32)
+
+[node name="Head" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
+position = Vector2(10, -74)
+texture = ExtResource("5_3pujf")
+offset = Vector2(3, -12)
+
+[node name="BackArm" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
+show_behind_parent = true
+position = Vector2(19, -43)
+texture = ExtResource("6_owq0r")
+offset = Vector2(14, 24)
+
+[node name="FrontArm" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
+position = Vector2(-18, -55)
+texture = ExtResource("7_rl4k4")
+offset = Vector2(21.545, 24.075)
+
+[node name="MiscAnimController" type="AnimationPlayer" parent="FlipPivot"]
+libraries = {
+"": SubResource("AnimationLibrary_t76dk")
+}
+script = ExtResource("8_iv6wj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_cwwwj")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("9_ssc6f")
+max_health = 35.0
+
+[node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
+script = ExtResource("10_s16at")
+movement_speed = 120.0
+movement_threshold = 0.1
+flip_pivot = NodePath("../FlipPivot")
+
+[node name="UtilityAIController" type="Node" parent="."]
+script = ExtResource("11_c7pl0")
+
+[node name="WalkTowardsAttractorUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
+script = ExtResource("12_3xyjk")
+attractor_group = "enemy_flag"
+distance_score_curve = SubResource("Curve_bdpj1")
+mover = NodePath("../../SoftMover")
+
+[node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
+script = ExtResource("13_qiwiq")
+distance_score_curve = SubResource("Curve_fq5i7")
+max_distance = 512.0
+stop_distance = 32.0
+mover = NodePath("../../SoftMover")
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("CircleShape2D_dyxqo")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(0, -21)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(48, 0)
+shape = SubResource("CircleShape2D_37sfr")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ObjectAvoider" type="Area2D" parent="." node_paths=PackedStringArray("mover")]
+script = ExtResource("14_ildk8")
+mover = NodePath("../SoftMover")
+range = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectAvoider"]
+shape = SubResource("CircleShape2D_oofcu")
+
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]

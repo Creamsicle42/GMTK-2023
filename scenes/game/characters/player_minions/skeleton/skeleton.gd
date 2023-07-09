@@ -7,9 +7,24 @@ class_name Skeleton extends CharacterBody2D
 @onready var soft_mover: Node2D = $SoftMover
 @onready var attack_cooldown: Timer = $AttackCooldown
 
+var ai_update_id : int
+var movement_update_id : int
+
+func _ready() -> void:
+	ai_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, $UtilityAIController.update_utility_pritority)
+	movement_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_MOVEMENT, soft_mover.update_movement_direction)
+
+
+func _exit_tree() -> void:
+	UpdateQueueSystem.remove_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, ai_update_id)
+	UpdateQueueSystem.remove_queued_update(UpdateQueueSystem.PLAYER_MINION_MOVEMENT, movement_update_id)
+
 
 func _process(delta: float) -> void:
 	update_animations()
+
+
+func get_craft_type() -> String: return "skeleton"
 
 
 func get_enemy_group() -> Array[Node2D]:
@@ -39,11 +54,19 @@ func do_attack(direction: Vector2) -> void:
 	attack_cooldown.start()
 	$AttackArea.rotation = direction.angle()
 	for i in $AttackArea.get_overlapping_bodies():
-		i.health_component.change_health(-10)
+		i.health_component.change_health(-8)
 
 
 func reclaim() -> void:
-	if(randf_range(0, 0.8) < health_component.get_percent_health()):
+	if(randf_range(0, 0.9) < health_component.get_percent_health()):
+		var spark = SceneDict.MANA_SPARK.instantiate()
+		get_parent().add_child(spark)
+		spark.global_position = global_position
+	if(randf_range(0, 0.7) < health_component.get_percent_health()):
+		var spark = SceneDict.MANA_SPARK.instantiate()
+		get_parent().add_child(spark)
+		spark.global_position = global_position
+	if(randf_range(0, 0.5) < health_component.get_percent_health()):
 		var spark = SceneDict.MANA_SPARK.instantiate()
 		get_parent().add_child(spark)
 		spark.global_position = global_position

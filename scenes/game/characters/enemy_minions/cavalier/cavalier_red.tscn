@@ -1,84 +1,19 @@
-[gd_scene load_steps=26 format=3 uid="uid://gm37y6c5u0w7"]
+[gd_scene load_steps=26 format=3 uid="uid://ds2lvssl2wygq"]
 
-[ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_xbf5h"]
-[ext_resource type="Texture2D" uid="uid://dbc4awurlle5d" path="res://assets/textures/characters/cavalier/legs.png" id="2_1xmtb"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_p0738"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="2_x17pd"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="3_hg88m"]
-[ext_resource type="Texture2D" uid="uid://btmo4blqpes18" path="res://assets/textures/characters/cavalier/torso.png" id="3_o4vg6"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="4_g4mx2"]
-[ext_resource type="Texture2D" uid="uid://cmxcvpnfs3nkc" path="res://assets/textures/characters/cavalier/head.png" id="4_wsv5m"]
-[ext_resource type="Texture2D" uid="uid://bcf7hwd4yumuj" path="res://assets/textures/characters/cavalier/back_arm.png" id="5_5hyre"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="5_fghxp"]
-[ext_resource type="Texture2D" uid="uid://b4cipgohasp53" path="res://assets/textures/characters/cavalier/front_arm.png" id="6_e11e2"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="6_ql5yo"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="8_6nsrb"]
-[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="8_84wlp"]
-
-[sub_resource type="Animation" id="Animation_5cylm"]
-resource_name = "idle"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Legs:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.99), Vector2(1, 1), Vector2(1, 1.01)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Legs/Torso/Head:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0872665, 0.0, -0.0872665]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Legs/Torso/FrontArm:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0349066, 0.0, -0.0349066]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Legs/Torso/BackArm:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.0349066, 0.0, 0.0349066]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Legs:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
+[ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_0cyfi"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_rf5ca"]
+[ext_resource type="Texture2D" uid="uid://dbc4awurlle5d" path="res://assets/textures/characters/cavalier/legs.png" id="3_6u1x8"]
+[ext_resource type="Texture2D" uid="uid://dmqgydjf67qxk" path="res://assets/textures/characters/cavalier/torso_red.png" id="4_qlsy1"]
+[ext_resource type="Texture2D" uid="uid://cmxcvpnfs3nkc" path="res://assets/textures/characters/cavalier/head.png" id="5_sm8a1"]
+[ext_resource type="Texture2D" uid="uid://bcf7hwd4yumuj" path="res://assets/textures/characters/cavalier/back_arm.png" id="6_n6ob8"]
+[ext_resource type="Texture2D" uid="uid://b4cipgohasp53" path="res://assets/textures/characters/cavalier/front_arm.png" id="7_ffb7m"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/misc_anim_controller.gd" id="8_se77k"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="9_h3rj2"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/soft_movement/soft_mover.gd" id="10_82y7h"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/utility_ai_controller.gd" id="11_1ponr"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="12_yxk3d"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="13_x0si1"]
+[ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="14_atofp"]
 
 [sub_resource type="Animation" id="Animation_djy78"]
 length = 0.001
@@ -155,6 +90,147 @@ tracks/5/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_ld7sy"]
+resource_name = "attack"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs/Torso:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.261799, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs/Torso/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs/Torso/FrontArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -2.26893, 0.558505, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Legs/Torso/BackArm:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.470979, 0.21036, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Legs:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5cylm"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.99), Vector2(1, 1), Vector2(1, 1.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs/Torso/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Legs/Torso/FrontArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0349066, 0.0, -0.0349066]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Legs/Torso/BackArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, 0.0, 0.0349066]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Legs:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_yhi00"]
 resource_name = "walk"
 loop_mode = 1
@@ -219,82 +295,7 @@ tracks/4/keys = {
 "values": [0.0, -0.261799]
 }
 
-[sub_resource type="Animation" id="Animation_ld7sy"]
-resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Legs:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Legs/Torso:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.261799, 0.261799, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Legs/Torso/Head:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.174533, -0.174533]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Legs/Torso/FrontArm:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -2.26893, 0.558505, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Legs/Torso/BackArm:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.470979, 1.68099, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Legs:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7h8ep"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t76dk"]
 _data = {
 "RESET": SubResource("Animation_djy78"),
 "attack": SubResource("Animation_ld7sy"),
@@ -322,90 +323,75 @@ radius = 48.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oofcu"]
 radius = 16.0
 
-[node name="Cavalier" type="CharacterBody2D"]
+[node name="CavalierYellow" type="CharacterBody2D"]
 collision_layer = 4
-script = ExtResource("1_xbf5h")
+script = ExtResource("1_0cyfi")
+damage = 20
+xp = 6
 
 [node name="FlipPivot" type="Node2D" parent="."]
-script = ExtResource("2_p0738")
+script = ExtResource("2_rf5ca")
 
 [node name="Legs" type="Sprite2D" parent="FlipPivot"]
 position = Vector2(0, -32)
-texture = ExtResource("2_1xmtb")
+texture = ExtResource("3_6u1x8")
 hframes = 2
 
 [node name="Torso" type="Sprite2D" parent="FlipPivot/Legs"]
 position = Vector2(4, -40)
-texture = ExtResource("3_o4vg6")
+texture = ExtResource("4_qlsy1")
 offset = Vector2(0, -32)
 
 [node name="Head" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
 position = Vector2(10, -74)
-texture = ExtResource("4_wsv5m")
+texture = ExtResource("5_sm8a1")
 offset = Vector2(3, -12)
 
 [node name="BackArm" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
 show_behind_parent = true
 position = Vector2(19, -43)
-texture = ExtResource("5_5hyre")
+texture = ExtResource("6_n6ob8")
 offset = Vector2(14, 24)
 
 [node name="FrontArm" type="Sprite2D" parent="FlipPivot/Legs/Torso"]
 position = Vector2(-18, -55)
-texture = ExtResource("6_e11e2")
+texture = ExtResource("7_ffb7m")
 offset = Vector2(21.545, 24.075)
 
 [node name="MiscAnimController" type="AnimationPlayer" parent="FlipPivot"]
 libraries = {
-"": SubResource("AnimationLibrary_7h8ep")
+"": SubResource("AnimationLibrary_t76dk")
 }
-script = ExtResource("8_6nsrb")
+script = ExtResource("8_se77k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_cwwwj")
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_x17pd")
-max_health = 75.0
+script = ExtResource("9_h3rj2")
 
 [node name="SoftMover" type="Node2D" parent="." node_paths=PackedStringArray("flip_pivot")]
-script = ExtResource("3_hg88m")
-movement_speed = 64.0
+script = ExtResource("10_82y7h")
+movement_speed = 120.0
 movement_threshold = 0.1
 flip_pivot = NodePath("../FlipPivot")
 
-[node name="MoveUpdateTimer" type="Timer" parent="SoftMover"]
-wait_time = 0.25
-autostart = true
-
 [node name="UtilityAIController" type="Node" parent="."]
-script = ExtResource("4_g4mx2")
-
-[node name="UtilityUpdateTimer" type="Timer" parent="UtilityAIController"]
-wait_time = 0.5
-autostart = true
+script = ExtResource("11_1ponr")
 
 [node name="WalkTowardsAttractorUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
-script = ExtResource("5_fghxp")
+script = ExtResource("12_yxk3d")
 attractor_group = "enemy_flag"
 distance_score_curve = SubResource("Curve_bdpj1")
 mover = NodePath("../../SoftMover")
 
-[node name="UpdateAttractorTimer" type="Timer" parent="UtilityAIController/WalkTowardsAttractorUtility"]
-wait_time = 5.0
-autostart = true
-
 [node name="AttackEnemyInGroupUtility" type="Node" parent="UtilityAIController" node_paths=PackedStringArray("mover")]
-script = ExtResource("6_ql5yo")
+script = ExtResource("13_x0si1")
 distance_score_curve = SubResource("Curve_fq5i7")
 max_distance = 512.0
 stop_distance = 32.0
 mover = NodePath("../../SoftMover")
-
-[node name="UpdateTimer" type="Timer" parent="UtilityAIController/AttackEnemyInGroupUtility"]
-wait_time = 1.25
-autostart = true
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -425,10 +411,11 @@ position = Vector2(48, 0)
 shape = SubResource("CircleShape2D_37sfr")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="ObjectAvoider" type="Area2D" parent="." node_paths=PackedStringArray("mover")]
-script = ExtResource("8_84wlp")
+script = ExtResource("14_atofp")
 mover = NodePath("../SoftMover")
 range = 16.0
 
@@ -436,7 +423,3 @@ range = 16.0
 shape = SubResource("CircleShape2D_oofcu")
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
-[connection signal="timeout" from="SoftMover/MoveUpdateTimer" to="SoftMover" method="update_movement_direction"]
-[connection signal="timeout" from="UtilityAIController/UtilityUpdateTimer" to="UtilityAIController" method="update_utility_pritority"]
-[connection signal="timeout" from="UtilityAIController/WalkTowardsAttractorUtility/UpdateAttractorTimer" to="UtilityAIController/WalkTowardsAttractorUtility" method="update_closest_attractor"]
-[connection signal="timeout" from="UtilityAIController/AttackEnemyInGroupUtility/UpdateTimer" to="UtilityAIController/AttackEnemyInGroupUtility" method="update_closest_attractor"]

@@ -6,12 +6,11 @@ class_name LineTrail extends Line2D
 func _ready() -> void:
 	top_level = true
 	global_position = Vector2.ZERO
-	add_point(get_parent().global_position)
 
 
 func _physics_process(delta: float) -> void:
 	global_position = Vector2.ZERO
-	if(get_point_position(0).distance_to(get_parent().global_position) > point_minimum_distance):
+	if(points.size() == 0 or get_point_position(0).distance_to(get_parent().global_position) > point_minimum_distance):
 		add_point(get_parent().global_position, 0)
 	if(get_point_count() > trail_length): remove_end_point()
 

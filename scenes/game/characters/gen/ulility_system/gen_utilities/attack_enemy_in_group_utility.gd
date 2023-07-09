@@ -17,6 +17,7 @@ func _ready() -> void:
 
 ## Gets the score (priority) of the utility
 func get_utility_score() -> float:
+	update_closest_attractor()
 	if owner.get_enemy_group().size() == 0: return 0.0
 	var base_utility = clamp(distance_to_closest_attractor() / max_distance, 0.0, 1.0)
 	return distance_score_curve.sample(base_utility)

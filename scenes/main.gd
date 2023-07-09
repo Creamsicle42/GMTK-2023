@@ -2,14 +2,30 @@ class_name Main extends Node
 
 const MAIN_MENU_SCENE = preload("res://scenes/menu/main_menu/main_menu.tscn")
 const GAME_LEVELS_PATHS = [
+	"res://scenes/game/levels/cutscenes/opening_cutscene.tscn",
+	"res://scenes/game/levels/level_1.tscn",
 	"res://scenes/game/levels/test_level.tscn",
-	"res://scenes/menu/game_end_screen/game_end_screen.tscn"
+	"res://scenes/game/levels/level_3.tscn",
+	"res://scenes/game/levels/level_4.tscn",
+	"res://scenes/game/levels/level_5.tscn",
+	"res://scenes/game/levels/cutscenes/closing_cutscene.tscn"
 ]
 
 var current_scene: Node
 var last_loaded_level := 0
+var is_changing_level := false
 
 func _ready() -> void:
+	set_main_menu()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_page_up"):
+		load_level(last_loaded_level + 1)
+
+
+func set_main_menu() -> void:
+	if current_scene != null: current_scene.queue_free()
 	current_scene = MAIN_MENU_SCENE.instantiate()
 	add_child(current_scene)
 	(current_scene as MainMenu).start_game.connect(
@@ -22,9 +38,12 @@ func reload_current_level() -> void:
 
 
 func load_level(level_index: int) -> void:
-	if level_index >= GAME_LEVELS_PATHS.size() or level_index < 0: return
+	if is_changing_level: return
+	if level_index >= GAME_LEVELS_PATHS.size() or level_index < 0:
+		set_main_menu()
+		return
 	last_loaded_level = level_index
-	
+	is_changing_level = true
 	var scene_path = GAME_LEVELS_PATHS[level_index]
 	ResourceLoader.load_threaded_request(scene_path)
 	var loading = true
@@ -50,9 +69,11 @@ func load_level(level_index: int) -> void:
 	
 	# Place level
 	current_scene.queue_free()
+	await get_tree().process_frame
 	current_scene = (ResourceLoader.load_threaded_get(scene_path) as PackedScene).instantiate()
 	if current_scene.has_signal("level_complete"): current_scene.level_complete.connect(load_level.bind(level_index + 1))
 	if current_scene.has_signal("player_killed"): current_scene.player_killed.connect(reload_current_level)
 	add_child(current_scene)
 	LoadingScreen.fade_in()
+	is_changing_level = false
 	

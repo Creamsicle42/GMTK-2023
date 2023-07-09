@@ -1,14 +1,19 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://defs1a6w50rio"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://defs1a6w50rio"]
 
 [ext_resource type="Texture2D" uid="uid://cvhg3qwnwgmyo" path="res://assets/textures/terain/bricks.png" id="1_crnit"]
 [ext_resource type="Texture2D" uid="uid://5eiqtu1ni100" path="res://assets/textures/terain/grass.png" id="2_k3ac0"]
 [ext_resource type="PackedScene" uid="uid://blmjo3nwh3dpk" path="res://scenes/game/props/grass_tuft.tscn" id="3_mxhdn"]
 [ext_resource type="PackedScene" uid="uid://cmf6widkn3m5q" path="res://scenes/game/props/tree.tscn" id="4_cw36o"]
+[ext_resource type="PackedScene" uid="uid://i11h8ovoxx5t" path="res://scenes/game/characters/obelisk/obelisk.tscn" id="4_ma3qj"]
 [ext_resource type="PackedScene" uid="uid://bwumhgh1l0l2k" path="res://scenes/game/props/crate.tscn" id="5_0i6pb"]
+[ext_resource type="PackedScene" uid="uid://bawmiwxeowx1x" path="res://scenes/game/characters/player_minions/large_skeleton/large_skeleton.tscn" id="5_0tbau"]
+[ext_resource type="PackedScene" uid="uid://dbllmaqmo65e8" path="res://scenes/game/characters/player_minions/skeleton/skeleton.tscn" id="6_k1wax"]
 [ext_resource type="PackedScene" uid="uid://dnmsk6rqj4417" path="res://scenes/game/props/stone.tscn" id="6_l0gd0"]
 [ext_resource type="PackedScene" uid="uid://x8wmronrpl6j" path="res://scenes/game/props/wall.tscn" id="7_t04tc"]
-[ext_resource type="PackedScene" uid="uid://gm37y6c5u0w7" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.tscn" id="8_533ew"]
+[ext_resource type="PackedScene" uid="uid://gm37y6c5u0w7" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier_green.tscn" id="8_notx5"]
 [ext_resource type="PackedScene" uid="uid://caex1sj073oua" path="res://scenes/game/characters/capture_point/capture_point.tscn" id="9_bqwwk"]
+[ext_resource type="PackedScene" uid="uid://ds2lvssl2wygq" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier_red.tscn" id="10_rbyhp"]
+[ext_resource type="PackedScene" uid="uid://c5cjryujhkxsb" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier_yellow.tscn" id="11_6vtpg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltoqq"]
 texture = ExtResource("1_crnit")
@@ -83,7 +88,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nbfho"]
 texture = ExtResource("2_k3ac0")
-texture_region_size = Vector2i(96, 96)
+texture_region_size = Vector2i(1, 1)
 0:0/0 = 0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_uwnbm"]
@@ -92,8 +97,13 @@ scenes/2/scene = ExtResource("4_cw36o")
 scenes/3/scene = ExtResource("5_0i6pb")
 scenes/4/scene = ExtResource("6_l0gd0")
 scenes/5/scene = ExtResource("7_t04tc")
-scenes/6/scene = ExtResource("8_533ew")
+scenes/6/scene = ExtResource("8_notx5")
 scenes/7/scene = ExtResource("9_bqwwk")
+scenes/8/scene = ExtResource("10_rbyhp")
+scenes/9/scene = ExtResource("11_6vtpg")
+scenes/10/scene = ExtResource("4_ma3qj")
+scenes/11/scene = ExtResource("5_0tbau")
+scenes/12/scene = ExtResource("6_k1wax")
 
 [resource]
 tile_size = Vector2i(64, 64)

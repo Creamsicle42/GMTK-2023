@@ -1,0 +1,187 @@
+[gd_scene load_steps=7 format=3 uid="uid://o7h2y1m8jag2"]
+
+[ext_resource type="Script" path="res://scenes/game/levels/cutscenes/cutscene.gd" id="1_3tggy"]
+[ext_resource type="Texture2D" uid="uid://dq401yrfqagpk" path="res://assets/textures/cutscene/opening/frame_1.png" id="1_8bopp"]
+[ext_resource type="Texture2D" uid="uid://nlxhq6js7aj" path="res://assets/textures/cutscene/opening/frame_2.png" id="2_dnhco"]
+
+[sub_resource type="Animation" id="Animation_26g7m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0431373, 0, 0.0156863, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frame2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Frame1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/Label:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["My beloved Lorane lies dead..."]
+}
+
+[sub_resource type="Animation" id="Animation_ys3sc"]
+resource_name = "play"
+length = 22.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5, 8.5, 9.5, 13, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0431373, 0, 0.0156863, 1), Color(0.0392157, 0, 0.0156863, 0), Color(0.0392157, 0, 0.0156863, 0), Color(0.0392157, 0, 0.0156863, 1), Color(0.0392157, 0, 0.0156863, 1), Color(0.0392157, 0, 0.0156863, 0), Color(0.0392157, 0, 0.0156863, 0), Color(0.0392157, 0, 0.0156863, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Frame2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Frame1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/Label:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5, 5.5, 8, 8.5, 14.5, 15, 20, 20.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3, 14.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["My beloved Lorane lies dead...", "And the power of her resurrection lies in the hands of my enemies..."]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(21.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"complete"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecwyl"]
+_data = {
+"RESET": SubResource("Animation_26g7m"),
+"play": SubResource("Animation_ys3sc")
+}
+
+[node name="OpeningCutscene" type="Node2D"]
+script = ExtResource("1_3tggy")
+
+[node name="Frame1" type="Sprite2D" parent="."]
+texture = ExtResource("1_8bopp")
+centered = false
+
+[node name="Frame2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_dnhco")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -128.0
+offset_top = -90.0
+offset_right = 1367.0
+offset_bottom = 790.0
+color = Color(0.0431373, 0, 0.0156863, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1286.0
+offset_bottom = 718.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "My beloved Lorane lies dead..."
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "play"
+libraries = {
+"": SubResource("AnimationLibrary_ecwyl")
+}
