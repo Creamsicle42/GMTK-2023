@@ -1,4 +1,4 @@
-class_name Skeleton extends CharacterBody2D
+class_name LargeSkeleton extends CharacterBody2D
 
 
 @onready var player : PlayerMain = get_tree().get_first_node_in_group("player")
@@ -51,19 +51,11 @@ func do_attack(direction: Vector2) -> void:
 	attack_cooldown.start()
 	$AttackArea.rotation = direction.angle()
 	for i in $AttackArea.get_overlapping_bodies():
-		i.health_component.change_health(-20)
+		i.health_component.change_health(-10)
 
 
 func reclaim() -> void:
-	if(randf_range(0, 0.9) < health_component.get_percent_health()):
-		var spark = SceneDict.MANA_SPARK.instantiate()
-		get_parent().add_child(spark)
-		spark.global_position = global_position
-	if(randf_range(0, 0.7) < health_component.get_percent_health()):
-		var spark = SceneDict.MANA_SPARK.instantiate()
-		get_parent().add_child(spark)
-		spark.global_position = global_position
-	if(randf_range(0, 0.5) < health_component.get_percent_health()):
+	if(randf_range(0, 0.8) < health_component.get_percent_health()):
 		var spark = SceneDict.MANA_SPARK.instantiate()
 		get_parent().add_child(spark)
 		spark.global_position = global_position
