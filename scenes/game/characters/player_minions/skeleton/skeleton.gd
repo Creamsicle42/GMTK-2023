@@ -19,6 +19,7 @@ func _ready() -> void:
 	$RaiseSound.play()
 	misc_anim_controller.play("raise")
 	visible = true
+	$BoneParticles.emitting = true
 	await misc_anim_controller.animation_finished
 	halt_anim = false
 	ai_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, $UtilityAIController.update_utility_pritority)
@@ -92,3 +93,4 @@ func reclaim() -> void:
 func _on_health_component_damage_taken(damage) -> void:
 	$HurtSound.pitch_scale = randf_range(0.9, 1.1)
 	$HurtSound.play()
+	$BoneParticles.emitting = true

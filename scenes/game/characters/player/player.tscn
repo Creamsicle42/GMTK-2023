@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://4nsy5ttwkk8o"]
+[gd_scene load_steps=28 format=3 uid="uid://4nsy5ttwkk8o"]
 
 [ext_resource type="Script" path="res://scenes/game/characters/player/player_main.gd" id="1_f466v"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_5vv8r"]
@@ -21,6 +21,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nr5qy"]
 radius = 32.0
+
+[sub_resource type="Curve" id="Curve_mdqh7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228571, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_7xjbe"]
 length = 0.001
@@ -636,6 +640,22 @@ script = ExtResource("1_f466v")
 [node name="WorldCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_nr5qy")
+
+[node name="CastParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-1, -114)
+emitting = false
+amount = 32
+spread = 180.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 89.74
+initial_velocity_max = 333.33
+damping_min = 8.975
+damping_max = 15.59
+angle_max = 720.0
+scale_amount_min = 16.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_mdqh7")
+color = Color(0.937255, 0.439216, 0.823529, 1)
 
 [node name="DisplayPivot" type="Node2D" parent="."]
 script = ExtResource("2_5vv8r")

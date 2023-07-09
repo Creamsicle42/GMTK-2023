@@ -77,10 +77,12 @@ func set_selected_spell(spell: SpellType) -> void:
 	if spell == null:
 		var audio_tween = create_tween()
 		audio_tween.tween_property($Magic, "volume_db", -80, 0.5)
+		$CastParticles.emitting = false
 		player_ui.spell_ui.set_cancel_button_enabled(false)
 	else:
 		var audio_tween = create_tween()
 		audio_tween.tween_property($Magic, "volume_db", -10, 0.5)
+		$CastParticles.emitting = true
 		player_ui.spell_ui.set_cancel_button_enabled(true)
 
 
