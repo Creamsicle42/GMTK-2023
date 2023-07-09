@@ -1,6 +1,8 @@
 class_name PlayerMain extends CharacterBody2D
 
 # SIGNALS
+signal player_killed 
+
 # ENUMS
 # CONSTANTS
 const MOVE_SPEED := 192.0
@@ -153,3 +155,7 @@ func _update_debug() -> void:
 
 func _on_mana_tracker_mana_value_changed(new_value) -> void:
 	player_ui.mana_bar.update_value(new_value / mana_tracker.MAX_MANA)
+
+
+func _on_mana_tracker_mana_depleted() -> void:
+	player_killed.emit()

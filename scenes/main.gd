@@ -8,6 +8,7 @@ const GAME_LEVELS_PATHS = [
 
 var current_scene: Node
 var last_loaded_level := 0
+var is_changing_level := false
 
 func _ready() -> void:
 	current_scene = MAIN_MENU_SCENE.instantiate()
@@ -22,9 +23,10 @@ func reload_current_level() -> void:
 
 
 func load_level(level_index: int) -> void:
+	if is_changing_level: return
 	if level_index >= GAME_LEVELS_PATHS.size() or level_index < 0: return
 	last_loaded_level = level_index
-	
+	is_changing_level = true
 	var scene_path = GAME_LEVELS_PATHS[level_index]
 	ResourceLoader.load_threaded_request(scene_path)
 	var loading = true
@@ -55,4 +57,5 @@ func load_level(level_index: int) -> void:
 	if current_scene.has_signal("player_killed"): current_scene.player_killed.connect(reload_current_level)
 	add_child(current_scene)
 	LoadingScreen.fade_in()
+	is_changing_level = false
 	

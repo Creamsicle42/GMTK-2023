@@ -720,8 +720,11 @@ shape = SubResource("CircleShape2D_e76y4")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_ed4ee")
 max_health = 100.0
+invulnerable = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
+[connection signal="mana_depleted" from="ManaTracker" to="." method="_on_mana_tracker_mana_depleted"]
 [connection signal="mana_value_changed" from="ManaTracker" to="." method="_on_mana_tracker_mana_value_changed"]
+[connection signal="damage_taken" from="HealthComponent" to="ManaTracker" method="_on_health_component_damage_taken"]

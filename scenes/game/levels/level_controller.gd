@@ -17,3 +17,6 @@ func _ready() -> void:
 					level_complete.emit()
 					print_debug("Level Complete!")
 		)
+	get_tree().get_first_node_in_group("player").player_killed.connect(
+		func(): player_killed.emit()
+	)
