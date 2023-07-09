@@ -10,10 +10,21 @@ class_name Skeleton extends CharacterBody2D
 var ai_update_id : int
 var movement_update_id : int
 
+var halt_anim := true
+
 func _ready() -> void:
+	visible = false
+	await get_tree().create_timer(randf_range(0.0, 0.8)).timeout
+	$RaiseSound.pitch_scale = randf_range(0.9, 1.1)
+	$RaiseSound.play()
+	misc_anim_controller.play("raise")
+	visible = true
+	$BoneParticles.emitting = true
+	await misc_anim_controller.animation_finished
+	halt_anim = false
 	ai_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, $UtilityAIController.update_utility_pritority)
 	movement_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.PLAYER_MINION_MOVEMENT, soft_mover.update_movement_direction)
-
+	
 
 func _exit_tree() -> void:
 	UpdateQueueSystem.remove_queued_update(UpdateQueueSystem.PLAYER_MINION_AI, ai_update_id)
@@ -33,11 +44,17 @@ func get_enemy_group() -> Array[Node2D]:
 
 
 func _on_health_component_health_depleted() -> void:
+	halt_anim = true
+	$DieSound.pitch_scale = randf_range(0.9, 1.1)
+	$DieSound.play()
+	misc_anim_controller.play("die")
+	await misc_anim_controller.animation_finished
 	translate(Vector2(-10000, -10000))
 	await get_tree().process_frame
 	queue_free()
 
 func update_animations() -> void:
+	if halt_anim: return
 	if not attack_cooldown.is_stopped():
 		misc_anim_controller.set_animation("attack")
 		return
@@ -71,3 +88,9 @@ func reclaim() -> void:
 		get_parent().add_child(spark)
 		spark.global_position = global_position
 	queue_free()
+
+
+func _on_health_component_damage_taken(damage) -> void:
+	$HurtSound.pitch_scale = randf_range(0.9, 1.1)
+	$HurtSound.play()
+	$BoneParticles.emitting = true

@@ -2,6 +2,9 @@ class_name Cavalier extends CharacterBody2D
 
 @export var damage : int = 10
 @export var xp : int = 4
+@export var hit_sound : AudioStreamPlayer
+@export var die_sound : AudioStreamPlayer
+
 
 @onready var health_component: Node = $HealthComponent
 @onready var misc_anim_controller: AnimationPlayer = $FlipPivot/MiscAnimController
@@ -10,6 +13,7 @@ class_name Cavalier extends CharacterBody2D
 
 var ai_update_id : int
 var movement_update_id : int
+var halt_animation := false
 
 func _ready() -> void:
 	ai_update_id = UpdateQueueSystem.add_queued_update(UpdateQueueSystem.ENEMY_AI, $UtilityAIController.update_utility_pritority)
@@ -29,6 +33,7 @@ func get_enemy_group() -> Array[Node2D]:
 
 
 func update_animations() -> void:
+	if halt_animation: return
 	if not attack_cooldown.is_stopped():
 		misc_anim_controller.set_animation("attack")
 		return
@@ -58,6 +63,16 @@ func die() -> void:
 		var spark = SceneDict.MANA_SPARK.instantiate()
 		get_parent().add_child(spark)
 		spark.global_position = global_position
+	halt_animation = true
+	die_sound.pitch_scale = randf_range(0.9, 1.1)
+	die_sound.play()
+	misc_anim_controller.play("die")
+	await misc_anim_controller.animation_finished
 	translate(Vector2(-10000, -10000))
 	await get_tree().process_frame
 	queue_free()
+
+
+func _on_health_component_damage_taken(damage) -> void:
+	hit_sound.pitch_scale = randf_range(0.8, 1.1)
+	hit_sound.play()

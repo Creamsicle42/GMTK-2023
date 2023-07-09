@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ds2lvssl2wygq"]
+[gd_scene load_steps=29 format=3 uid="uid://ds2lvssl2wygq"]
 
 [ext_resource type="Script" path="res://scenes/game/characters/enemy_minions/cavalier/cavalier.gd" id="1_0cyfi"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/flip_pivot.gd" id="2_rf5ca"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/walk_toarwds_attrator_utility.gd" id="12_yxk3d"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/ulility_system/gen_utilities/attack_enemy_in_group_utility.gd" id="13_x0si1"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/object_avoider.gd" id="14_atofp"]
+[ext_resource type="AudioStream" uid="uid://376t25kh14ga" path="res://assets/audio/sfx/cavalier/knight_die.ogg" id="15_ehlbl"]
+[ext_resource type="AudioStream" uid="uid://brxhb7xpq06ri" path="res://assets/audio/sfx/cavalier/knight_hit.ogg" id="16_47ow2"]
 
 [sub_resource type="Animation" id="Animation_djy78"]
 length = 0.001
@@ -84,6 +86,18 @@ tracks/5/path = NodePath("Legs/Torso:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Legs:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -295,10 +309,39 @@ tracks/4/keys = {
 "values": [0.0, -0.261799]
 }
 
+[sub_resource type="Animation" id="Animation_tgvlu"]
+resource_name = "die"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Legs:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t76dk"]
 _data = {
 "RESET": SubResource("Animation_djy78"),
 "attack": SubResource("Animation_ld7sy"),
+"die": SubResource("Animation_tgvlu"),
 "idle": SubResource("Animation_5cylm"),
 "walk": SubResource("Animation_yhi00")
 }
@@ -323,11 +366,13 @@ radius = 48.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oofcu"]
 radius = 16.0
 
-[node name="CavalierYellow" type="CharacterBody2D"]
+[node name="CavalierRed" type="CharacterBody2D" node_paths=PackedStringArray("hit_sound", "die_sound")]
 collision_layer = 4
 script = ExtResource("1_0cyfi")
 damage = 20
 xp = 6
+hit_sound = NodePath("Hit")
+die_sound = NodePath("Die")
 
 [node name="FlipPivot" type="Node2D" parent="."]
 script = ExtResource("2_rf5ca")
@@ -421,5 +466,11 @@ range = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectAvoider"]
 shape = SubResource("CircleShape2D_oofcu")
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ehlbl")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_47ow2")
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
