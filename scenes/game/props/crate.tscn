@@ -1,11 +1,73 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwumhgh1l0l2k"]
+[gd_scene load_steps=10 format=3 uid="uid://bwumhgh1l0l2k"]
 
 [ext_resource type="Script" path="res://scenes/game/props/crate.gd" id="1_7bomx"]
 [ext_resource type="Texture2D" uid="uid://b102gdp6ypqlj" path="res://assets/textures/props/crate.png" id="1_7v350"]
 [ext_resource type="Script" path="res://scenes/game/characters/gen/health_component.gd" id="3_umtts"]
+[ext_resource type="AudioStream" uid="uid://dpxnubjbabebi" path="res://assets/audio/sfx/crate/crate_break.ogg" id="4_2orxu"]
+[ext_resource type="AudioStream" uid="uid://ccjrf2h1we5o" path="res://assets/audio/sfx/crate/crate_hit.ogg" id="4_d03nc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwvyb"]
 radius = 48.0
+
+[sub_resource type="Animation" id="Animation_8wtkq"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crate:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Crate:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(10, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wrmq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crate:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Crate:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_btu7b"]
+_data = {
+"RESET": SubResource("Animation_wrmq2"),
+"die": SubResource("Animation_8wtkq")
+}
 
 [node name="Crate" type="StaticBody2D"]
 collision_layer = 5
@@ -23,4 +85,16 @@ shape = SubResource("CircleShape2D_jwvyb")
 script = ExtResource("3_umtts")
 max_health = 20.0
 
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d03nc")
+
+[node name="Break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2orxu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_btu7b")
+}
+
+[connection signal="damage_taken" from="HealthComponent" to="." method="_on_health_component_damage_taken"]
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
